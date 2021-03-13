@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const db = require("../model");
 const passport = require("../passport");
-
+var path = require("path");
 
 router.get("/user", function (req, res) {
     db.Users.find({})
@@ -83,6 +83,20 @@ router.post('/logout', (req, res) => {
 })
 
 
+
+router.get("/login", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+});
+router.get("/events", function (req, res) {
+   res.sendFile(path.join(__dirname, "../public/events.html"));
+});
+router.get("/addevent", function (req, res) {
+   res.sendFile(path.join(__dirname, "../public/addevent.html"));
+});
+
+router.get("/logout", function (req, res) {
+   res.sendFile(path.join(__dirname, "../public/logout.html"));
+});
 
 
 
