@@ -1,29 +1,12 @@
 function Login(){
 return(
-<div>
-    <h1>Login</h1>
-    <TextInput
-        email
-        id="TextInput-4"
-        label="Email"
-        validate
-  />
-    <TextInput
-        id="TextInput-4"
-        label="Password"
-        password
-    />
-    <Button
-        node="button"
-        type="submit"
-        waves="light"
-    >
-        Login 
-        <Icon right>
-            send
-        </Icon>
-    </Button>
-</div>
+<form className={classes.root} noValidate autoComplete="off">
+<Input placeholder="UserName" inputProps={{ 'aria-label': 'description' }} />
+<Input placeholder="Password" inputProps={{ 'aria-label': 'description' }} />
+<Button variant="contained" color="primary">
+  Login
+</Button>
+</form>
 );
 }
 
