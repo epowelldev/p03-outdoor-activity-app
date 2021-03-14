@@ -4,8 +4,8 @@ import { Fragment } from "react";
 export default () => {
   return(
     <Fragment>
-      
-      <br/><br/><span>404: Page not found!</span>
+
+      <br/><br/>CREATE EVENT
 
     </Fragment>
   );
