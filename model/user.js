@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 var Schema = mongoose.Schema;
 
-var UsersSchema = new Schema({
+var UserSchema = new Schema({
 
     username: {
         type: String,
@@ -40,7 +40,7 @@ var UsersSchema = new Schema({
 
 });
 
-UsersSchema.methods = {
+UserSchema.methods = {
     checkPassword: function (inputPassword) {
         return bcrypt.compareSync(inputPassword, this.password)
     },
@@ -49,7 +49,7 @@ UsersSchema.methods = {
     }
 }
 
-UsersSchema.pre('save', function (next) {
+UserSchema.pre('save', function (next) {
     if (!this.password) {
         console.log('no password')
         next()
@@ -60,6 +60,6 @@ UsersSchema.pre('save', function (next) {
     }
 })
 
-var Users = mongoose.model("Users", UsersSchema);
+var User = mongoose.model("User", UserSchema);
 
-module.exports = Users;
+module.exports = User;
