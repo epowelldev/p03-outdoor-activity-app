@@ -8,5 +8,21 @@
 </head>
 <body>
     <h1>Add an event</h1>
+
+    <br/>
+    <form action="/api/events/add"  method="post">
+        <label for="name">activity name:</label><br>
+        <input type="text" id="name" name="name"  placeholder="activity name"><br>
+        <label for="address">address:</label><br>
+        <input type="text" id="address" name="address"  placeholder="address"><br>
+        <label for="date">Date</label><br>
+        <input type="date" id="date" name="date"  placeholder="date"><br>
+        <label for="time">time</label><br>
+        <input type="time" id="time" name="time" placeholder="time"><br>
+        <label for="description">description</label><br>
+        <input type="text" id="description" name="description" placeholder="description"><br>
+
+        <input type="submit" value="Submit"></input>
+      </form> 
 </body>
 </html>

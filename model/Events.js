@@ -31,20 +31,15 @@ var EventSchema = new Schema({
         required: true
     },
 
-    organizer: {
-        type: String,
-        required: true
-    },
-
     organizerId: {
         type: Schema.Types.ObjectId,
-        ref: "Users",
+        ref: "User",
         required: true,
     },
 
     attendees: [{
         type: Schema.Types.ObjectId,
-        ref: "Users",
+        ref: "User",
     }]
 
 });
