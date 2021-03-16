@@ -12,14 +12,6 @@ import Signup from "./components/Signup";
 function App() {
   return (
     <Router>
-<<<<<<< HEAD
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/signup" component={Signup}/>
-        <Route component={NotFound} />
-      </Switch>
-=======
       <Container>
         <Navbar />
         <Switch>
@@ -28,7 +20,6 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </Container>
->>>>>>> befeb99abb4e40814909781094d323ad6ad1892b
     </Router>
   );
 }
