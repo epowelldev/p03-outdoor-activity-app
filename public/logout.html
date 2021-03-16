@@ -9,11 +9,16 @@
 </head>
 
 <body>
-
     <h1>Logout</h1>
-    <form action="/logout" method="post">
+    <form action="/api/user/logout" method="post">
+   <input type="submit" value="Submit"></input>
 
-        <input type="submit" value="Submit"></input>
+   <br></br>
+
+   <h1>isAuthenticated</h1>
+   </form>
+   <form action="/api/user/currentuser" method="post">
+  <input type="submit" value="Submit"></input>
 </body>
 
 </html>

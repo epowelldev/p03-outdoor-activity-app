@@ -8,6 +8,9 @@ const morgan = require("morgan");
 const PORT = process.env.PORT || 3001;
 
 
+
+
+
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/join-us";
 mongoose.connect(
   MONGODB_URI,
@@ -16,14 +19,12 @@ mongoose.connect(
 );
 
 
-
-
 app.use(morgan("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static("public"));  // just for developing stage
+// app.use(express.static("public"));  // just for developing stage
 
 
 if (process.env.NODE_ENV === "production") {
@@ -35,10 +36,15 @@ app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );
 
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(routes);
+
+// app.get("*", function(req, res) {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 
 app.listen(PORT, function() {
   console.log(`🌎  ==> Server now listening on PORT ${PORT}!`);

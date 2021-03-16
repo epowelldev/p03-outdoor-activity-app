@@ -2,6 +2,7 @@ import {Button, Input, Box} from '@material-ui/core';
 
 function Signup(){
     return(
+        <Box mx="auto">
         <form >
          
             <Box mx="auto">
@@ -26,6 +27,7 @@ function Signup(){
         </Box>
        
       </form>
+      </Box>
     );
     }
     // className={classes.root} noValidate autoComplete="off"
