@@ -13,10 +13,11 @@ function App() {
   return (
     <Router>
       <Container>
-        <Navbar />
+        {/* <Navbar /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/CreateEvent" component={CreateEvent} />
+          <Route exact path="/Login" component={Login} />
           <Route component={NotFound} />
         </Switch>
       </Container>
