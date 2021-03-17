@@ -8,12 +8,19 @@ const useStyles=makeStyles({
     flexDirection:"column",
     width:"40%",
     marginLeft:"27%",
-    marginTop:"27%"
+    marginTop:"27%",
+    
   },
   inputStyles:{
     margin:"30px"
+  },
+  altBtn:{
+    fontFamily:"Sans-serif",
+    marginLeft:"22%"
   }
 });
+
+
 function Login(){
   const classes = useStyles();
 return(
@@ -26,6 +33,7 @@ return(
     <Button variant="contained" className={classes.inputStyles} color="primary">
         Login
     </Button>
+    <p className={classes.altBtn}>Don't have an account?<Button href="/signup" color="primary">Signup</Button></p>
 
   </Box>
 

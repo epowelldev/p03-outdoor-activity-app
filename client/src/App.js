@@ -18,6 +18,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/CreateEvent" component={CreateEvent} />
           <Route exact path="/Login" component={Login} />
+          <Route exact path="/Signup" component={Signup} />
           <Route component={NotFound} />
         </Switch>
       </Container>
