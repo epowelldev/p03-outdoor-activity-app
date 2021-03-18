@@ -105,6 +105,9 @@ module.exports = {
         })
 
     },
+    updateEvent: (req, res) => {
+
+    }
 
 
 
