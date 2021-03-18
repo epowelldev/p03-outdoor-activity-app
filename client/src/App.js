@@ -8,17 +8,19 @@ import CreateEvent from "./components/pages/CreateEvent";
 import './App.css';
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import NewEvent from "./components/NewEvent";
 
 function App() {
   return (
     <Router>
       <Container>
-        {/* <Navbar /> */}
+        <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/CreateEvent" component={CreateEvent} />
           <Route exact path="/Login" component={Login} />
           <Route exact path="/Signup" component={Signup} />
+          <Route exact path="/NewEvent" component={NewEvent} />
           <Route component={NotFound} />
         </Switch>
       </Container>

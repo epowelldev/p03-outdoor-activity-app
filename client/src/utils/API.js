@@ -10,10 +10,6 @@ const API = {
         return axios.post("/api/events/add",eventData);
     },
 
-    createUser: function(userData){
-        return axios.post("/api/register", userData)
-    },
-
     getUser: function(){
         return axios.get("/api/user/currentuser")
     },
