@@ -91,6 +91,14 @@ module.exports = {
     };
     res.json(userInfo);
   },
+
+  myEvents: (req, res) => {
+    db.User.find({ _id: req.params.id })
+        .populate("events")
+        .then(event => res.json(event))
+        .catch(err => res.json(err))
+
+  }
 };
 
 
