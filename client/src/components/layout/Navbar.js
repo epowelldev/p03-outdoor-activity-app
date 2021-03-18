@@ -8,18 +8,37 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { Fragment } from 'react';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,    
+  },
+  menuButton: {
+    // marginRight: theme.spacing(),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 export default () => {
+  const classes = useStyles();
+
   return (
     <Fragment>
       <AppBar>
         <Toolbar>
           <ButtonGroup variant="text" color="inherit">
-            <IconButton edge="start" aria-label="menu"><MenuIcon /></IconButton>
+            <IconButton edge="start" aria-label="menu" className={classes.menuButton}>
+              <MenuIcon />
+            </IconButton>
             <Button>Login</Button>
             <Button>Home</Button>
             <Button>Dashboard</Button>
-            <IconButton edge="end" aria-label="logout"><ExitToAppIcon /></IconButton>
+            <IconButton edge="end" aria-label="logout">
+              <ExitToAppIcon />
+            </IconButton>
           </ButtonGroup>
         </Toolbar>
       </AppBar>

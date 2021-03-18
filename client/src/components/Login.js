@@ -61,25 +61,24 @@ function Login(){
 
 if(loggedIn){
   return <Redirect to={{ pathname: "/Events" }} />;
-}else{
-return(
-<form onSubmit={handleSubmit}> 
- 
-  <Box className={classes.formStyles}>
+} else{
+    return(
+      <form onSubmit={handleSubmit}> 
+      
+        <Box className={classes.formStyles}>
 
-    <Input placeholder="UserName" className={classes.inputStyles} name="username" value={username} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
-    <Input placeholder="Password" className={classes.inputStyles} name="password" value={password} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
-    <Button variant="contained" className={classes.inputStyles} color="primary">
-        Login
-    </Button>
-    <p className={classes.altBtn}>Don't have an account?<Button href="/signup" color="primary">Signup</Button></p>
+          <Input placeholder="UserName" className={classes.inputStyles} name="username" value={username} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
+          <Input placeholder="Password" className={classes.inputStyles} name="password" value={password} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
+          <Button variant="contained" className={classes.inputStyles} color="primary">
+              Login
+          </Button>
+          <p className={classes.altBtn}>Don't have an account?<Button href="/signup" color="primary">Signup</Button></p>
 
-  </Box>
+        </Box>
 
-</form>
-
-);
-}
+      </form>
+    );
+  }
 }
 
 export default Login;
