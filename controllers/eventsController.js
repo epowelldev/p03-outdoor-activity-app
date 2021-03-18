@@ -77,6 +77,26 @@ module.exports = {
             }).catch(err => res.status(422).json(err));
 
 
+    },
+    leaveFromEvent: (req, res) => {
+        console.log(req.body)
+        const eventId = JSON.stringify(req.body).slice(2, 26)
+        console.log("event id -----------")
+        console.log(JSON.stringify(eventId).slice(2, 26))
+        console.log(`id for event is ${eventId}, userID is ${req.user._id}`)
+        //two processes in database: taking the eventId and add attendees the userId && taking the userId and add the eventId 
+        db.Events.findByIdAndUpdate(eventId,
+            {
+                $pull: { attendees: req.user._id }
+            }).then(() => {
+                return db.User.findByIdAndUpdate(req.user._id,
+                    { $pull: { events: eventId } },
+                    { new: true })
+            })
+            .then((response) => {
+                res.json(response);
+
+            }).catch(err => res.status(422).json(err));
     }
 
 
