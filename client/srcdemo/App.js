@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-
+import AddEvents from './pages/AddEvents'
 
 
 
@@ -20,9 +20,15 @@ function App() {
             <Route exact path="/Dashboard" >
               <Dashboard />
             </Route>
-            <Route exact path="/Login">
+
+            <Route exact path="/AddEvents" >
+              <AddEvents />
+            </Route>
+
+           <Route exact path="/Login">
               <Login />
             </Route>
+
             <Route exact path="/signup">
               <Signup />
                     </Route>
