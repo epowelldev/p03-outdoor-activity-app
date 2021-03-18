@@ -7,7 +7,18 @@ module.exports = {
 
         });
     },
+    eventInfo: (req, res) => {
+        let id = req.params.id
+        db.Events.findById(id)
+            .populate("attendees")
+            .then((response) => {
+                let timeToEvent = Moment(`${response.date} ${response.time}`).fromNow();
+                res.json({ eventInfo: response, time: timeToEvent });
 
+            });
+
+
+    },
     addEvent: (req, res) => {
         const { name, address, date, time, description } = req.body
         let newEvent = {};
@@ -62,7 +73,7 @@ module.exports = {
             .then((response) => {
                 res.json(response);
 
-                
+
             }).catch(err => res.status(422).json(err));
 
 
