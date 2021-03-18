@@ -22,13 +22,17 @@ const useStyles = makeStyles({
 function NewEvent(){
 
     const classes = useStyles();
-    const [eventState, setEventState] = useState({ name: '', address: '' , description:''});
-    const { name, address,date,time,description } = eventState;
+    const [eventState, setEventState] = useState({ name: '',datetimeInput:'', address: '' , description:''});
+    const { name, address,description } = eventState;
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(eventState)
-        API.createEvent(eventState).then((res) => {
+        const dateTime=eventState.datetimeInput.split("T");
+        const date=dateTime[0]
+        const time=dateTime[1]
+        setEventState({ name, address, description, date,time })
+        console.log( name, address, description, date,time)
+        API.createEvent({ name, address, description, date,time }).then((res) => {
             console.log(res.data)
             setEventState({ name: '', address: '' ,description:'' })
          
@@ -39,6 +43,7 @@ function NewEvent(){
 
     function handleChange(e) {
         e.preventDefault();
+        
         setEventState({ ...eventState, [e.target.name]: e.target.value })
         
     }
@@ -55,7 +60,7 @@ function NewEvent(){
         {/* <Input placeholder="Date" ref={date} name="date"  className={classes.inputStyles} inputProps={{ 'aria-label': 'date' }} />
         
         <Input placeholder="Time" ref={time}  name="time"  className={classes.inputStyles} inputProps={{ 'aria-label': 'time' }} /> */}
-        <Input placeholder="Event Date and Time"  name="event-datetime"  onChange={handleChange}  className={classes.inputStyles}  type="datetime-local" />
+        <Input placeholder="Event Date and Time"  name="datetimeInput"  onChange={handleChange}  className={classes.inputStyles}  type="datetime-local" />
         
         <Input placeholder="description"  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
        
