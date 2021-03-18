@@ -97,7 +97,14 @@ module.exports = {
                 res.json(response);
 
             }).catch(err => res.status(422).json(err));
-    }
+    },
+    findOrganizedEvent: (req, res) => {
+        let id = req.params.id
+        db.Events.find({ "organizerId": "604ec49779db5c096803db03" }).then((events) => {
+            res.json(events)
+        })
+
+    },
 
 
 
