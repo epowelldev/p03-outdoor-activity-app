@@ -6,10 +6,8 @@ import { Link } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 
 const Events = () => {
-    const [show, setShow] = useState(false);
-    const handleClose = (id) => setShow(false);
-    const handleShow = () => setShow(true);
-
+    const [show, setShow] = useState({isVisible:false, updateEventInfo:"" });
+    const handleClose = () => setShow({isVisible:false, updateEventInfo:"" });
 
     const [myEventsState, setmyEventsState] = useState([]);
     const [myOrganizedState, setMyOrganizedState] = useState([])
@@ -30,6 +28,10 @@ const Events = () => {
         // console.log(updateEventState)
     }
 
+    useEffect(()=>{
+        setUpdateEvent(show.updateEventInfo)
+
+    },[show])
 
 
     useEffect(() => {
@@ -37,7 +39,6 @@ const Events = () => {
             const data = res.data[0]
             setmyEventsState(JSON.parse(JSON.stringify(data)).events)
             // console.log(JSON.parse(JSON.stringify(data)).events)
-
         })
 
     }, [userState])
@@ -51,11 +52,6 @@ const Events = () => {
         })
 
     }, [userState])
-
-
-
-
-
 
 
     useEffect(() => {
@@ -109,12 +105,11 @@ const Events = () => {
     function updateEvent(e) {
         e.preventDefault()
 
-        // EVENT.eventInfo(eventId).then(res => {
-        //     console.log(res.data)
-        // })
-        // setNewEvent
+        EVENT.updateEvent(show.updateEventInfo._id, updateEventState).then(res => {
+            console.log(res.data)
+        })       
+        .then(window.location.replace("/Events"))         
 
-        // console.log(updateEventState)
     }
 
 
@@ -128,8 +123,7 @@ const Events = () => {
                     <h1>All events</h1>
                     <ul>
                         {eventsState.map(event => (
-                            // <li ><a href="/" alt={event.name}> {event.name} </a><button onClick={() => joinEvent(event._id)}>join event</button> </li>
-                            //    <li key={event._id}>{event.name} <span role="button" onClick={() => eventInfo(event._id)}><u>Info</u></span><button onClick={() => joinEvent(event._id)}>join event</button> </li>
+                    
                             <li key={event._id}>{event.name} <button onClick={() => eventInfo(event._id)}>Event Info</button><button onClick={() => joinEvent(event._id)}>join event</button> </li>
 
 
@@ -151,22 +145,17 @@ const Events = () => {
 
                     <ul>
                         {myOrganizedState.map(myOrganizedEvent => (
-                            <li key={myOrganizedEvent._id}>{myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}<button onClick={() => handleShow(myOrganizedEvent._id)}> update event</button> <button > Remove Event</button>  </li>
+                            <li key={myOrganizedEvent._id}>{myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}
+                            
+                            <button onClick={() => setShow({isVisible:true, updateEventInfo:myOrganizedEvent})}> update event</button> <button > Remove Event</button>  </li>
                         ))
                         }
                     </ul>
 
-
-
-
-
-
                 </div>
             }
-
             {!loggedIn &&
                 <div>
-
                     <h1>please log in to see the events</h1>
                     <h3><Link to="/SignUp">SignUp</Link></h3>
                     <h3><Link to="/Login">Login</Link></h3>
@@ -175,17 +164,14 @@ const Events = () => {
 
             }
 
-
-
-
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show.isVisible} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                  <h1>event id: </h1>
 
-
-                    <form action="/" onSubmit={updateEvent}>
+                    <form action="/" >
                         <label htmlFor="name">activity name :</label>
                         <input type="text" id="name" name="name" placeholder="avtivity Name" value={name} onChange={handleUpdateEvent}></input>
                         <label htmlFor="address">address:</label>
@@ -196,7 +182,7 @@ const Events = () => {
                         <input type="time" id="time" name="time" placeholder="time" value={time} onChange={handleUpdateEvent}></input>
                         <label htmlFor="description">description:</label>
                         <input type="description" id="description" name="description" placeholder="description" value={description} onChange={handleUpdateEvent}></input>
-                        <input type="submit" value="Submit"></input>
+                        <input type="submit" value="Submit" onClick={updateEvent}></input>
 
                     </form>
 
@@ -210,11 +196,6 @@ const Events = () => {
           </Button>
                 </Modal.Footer>
             </Modal>
-
-
-
-
-
 
 
         </>

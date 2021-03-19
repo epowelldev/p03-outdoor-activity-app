@@ -8,10 +8,7 @@ const AddEvent = () => {
     const [newEventState, setNewEvent] = useState({});
     const { name, address, date,time,description } = newEventState;
 
-    // useEffect(() => {
-    //     EVENTS.addEvent({ name: 'hikinggggggg', address: 'redmond', date:'2021-03-15',time:'12:57', description : "goooooooood"});
 
-    // }, [addEvent]);
 
     function handleNewEvent(e) {
         e.preventDefault();
@@ -22,7 +19,8 @@ const AddEvent = () => {
 
     function addNewEvent(e) {
         e.preventDefault();
-        EVENTS.addEvent(newEventState);
+        EVENTS.addEvent(newEventState)
+        .then(window.location.replace("/Events")) ;
         setNewEvent({})
 
     }
