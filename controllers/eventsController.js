@@ -1,24 +1,29 @@
 const db = require("../model");
+const Moment =require ("moment")
 
 module.exports = {
     getAllEvents: (req, res) => {
         db.Events.find({}).then((events) => {
             res.json(events);
-
         });
     },
+    findOrganizedEvent: (req,res) => {
+        let id = req.params.id
+        db.Events.find({"organizerId":id}).then((events)=>{
+            res.json(events)
+        })
+    },
+    
     eventInfo: (req, res) => {
         let id = req.params.id
         db.Events.findById(id)
             .populate("attendees")
             .then((response) => {
                 let timeToEvent = Moment(`${response.date} ${response.time}`).fromNow();
-                res.json({ eventInfo: response, time: timeToEvent });
-
+                 res.json({ eventInfo: response, time: timeToEvent });            
             });
-
-
     },
+
     addEvent: (req, res) => {
         const { name, address, date, time, description } = req.body
         let newEvent = {};
@@ -53,14 +58,16 @@ module.exports = {
         } else {
             res.json({ msg: "not loginned yet" })
         }
+        res.json(newEvent)
+        console.log(`${newEvent.name} "add event --------------------"`)
     },
 
     joinEvent: (req, res) => {
-
-        let eventId = req.body.eventname;
-
+        console.log(req.body)
+        const eventId = JSON.stringify(req.body).slice(2, 26)
+        console.log("event id -----------")
+        console.log(JSON.stringify(eventId).slice(2, 26))
         console.log(`id for event is ${eventId}, userID is ${req.user._id}`)
-
         //two processes in database: taking the eventId and add attendees the userId && taking the userId and add the eventId 
         db.Events.findByIdAndUpdate(eventId,
             {
@@ -73,11 +80,9 @@ module.exports = {
             .then((response) => {
                 res.json(response);
 
-
             }).catch(err => res.status(422).json(err));
-
-
     },
+
     leaveFromEvent: (req, res) => {
         console.log(req.body)
         const eventId = JSON.stringify(req.body).slice(2, 26)
@@ -98,16 +103,34 @@ module.exports = {
 
             }).catch(err => res.status(422).json(err));
     },
-    findOrganizedEvent: (req, res) => {
-        let id = req.params.id
-        db.Events.find({ "organizerId": "604ec49779db5c096803db03" }).then((events) => {
-            res.json(events)
-        })
-
-    },
     updateEvent: (req, res) => {
+            db.Events.findById(req.params.id)
+                .then(event => {                                   
+                    db.Events.findByIdAndUpdate(event._id,
+                        {
+                            $set: {
+                                name: req.body.name,
+                                address: req.body.address,
+                                date: req.body.date,
+                                time: req.body.time,
+                                description: req.body.description,
+                                                           }
+                        }, { new: true })
+                        .then(updatedEvent => {
+                            res.json(updatedEvent)
+                        })
+                })
+                .catch(err => res.json(err));
+       
+    },
 
-    }
+
+
+
+
+
+    
+
 
 
 

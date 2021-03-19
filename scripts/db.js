@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { myEvents } = require("../controllers/userController");
 const db = require("../model");
 mongoose.connect(
     process.env.MONGODB_URI ||
@@ -26,5 +27,20 @@ findAllEvents= async ()=>{
         console.log(events) 
 }
 
+async function myAttendedEvents  (){
+ const user=await db.User.find({ "_id":"60504a46f413ab43047441d6" })
+ console.log(user)
+ 
+}
 
-findAllEvents()
+
+async function findOrganizedEvent() {
+
+  // const findOrganizedEvent=await db.Events.find({ "organizerId":"604ec49779db5c096803db03" });
+  const findOrganizedEvent=await db.Events.findById("604ec49779db5c096803db03");
+  
+
+console.log(findOrganizedEvent)
+}
+
+findOrganizedEvent()
