@@ -10,11 +10,16 @@ const useStyles=makeStyles({
     flexDirection:"column",
     width:"40%",
     marginLeft:"27%",
-    marginTop:"27%",
-    
+    marginTop:"17%",
+    backgroundColor:"#5C6D37",
+    color:"white",
+    borderRadius:"25px",
+    paddingTop:"7%"
   },
   inputStyles:{
-    margin:"30px"
+    margin:"30px",
+    color:"black",
+    backgroundColor:"#90A955"
   },
   altBtn:{
     fontFamily:"Sans-serif",
