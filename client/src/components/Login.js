@@ -5,11 +5,15 @@ import { useEffect, useState } from 'react';
 import { Redirect } from "react-router-dom";
 import LoginPic from "../assets/loginPic.jpeg";
 
-const useStyles=makeStyles({
+const useSStyles=makeStyles({
+  root:{
+    margin:"0"
+  },
   formStyles:{
     display:"flex",
     flexDirection:"column",
     width:"40%",
+    justifyContent:"space-evenly",
     marginLeft:"27%",
     marginTop:"17%",
     backgroundColor:"#5C6D37",
@@ -32,7 +36,7 @@ const useStyles=makeStyles({
 
 
 function Login(){
-  const classes = useStyles();
+  const classes = useSStyles();
 
 
   const [loginState, setLoginState] = useState({ username: '', password: '' });

@@ -1,8 +1,9 @@
-
+import Events from "../Events"
 
 function EventsPage(){
 
-    return(<h1>events page</h1>);
+    return(
+    <Events/>);
 
 }
 

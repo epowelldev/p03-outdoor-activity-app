@@ -10,6 +10,7 @@ import LoginPage from "./components/pages/LoginPage";
 import Signup from "./components/Signup";
 import NewEvent from "./components/NewEvent";
 import Login from "./components/Login";
+import EventsPage from "./components/pages/EventsPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/Login" component={LoginPage} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/NewEvent" component={NewEvent} />
+          <Route exact path="/Events" component={EventsPage} />
           <Route component={NotFound} />
         </Switch>
       </Container>

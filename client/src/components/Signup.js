@@ -34,7 +34,7 @@ function Signup(){
 
     function handleSubmit(e) {
         e.preventDefault()
-
+      console.log("hit", signUpState)
         API.signup( signUpState)
                .then(setSignUpState({ username: '', email: '', password: '' }))
             //    .then(AUTH.login(username, password))           
@@ -65,7 +65,7 @@ function Signup(){
         
         <Input placeholder="Email" name="email" value={email} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
        
-        <Button variant="contained"  className={classes.inputStyles} color="primary">
+        <Button variant="contained"  className={classes.inputStyles} color="primary" onClick={handleSubmit}>
             Create Account
         </Button>
        <p className={classes.altBtn} >Already have an account?<Button href="/login" color="primary">Login</Button></p>
