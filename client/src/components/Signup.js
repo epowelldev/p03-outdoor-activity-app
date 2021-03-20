@@ -2,6 +2,7 @@ import {Button, Input, Box} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import API from "../utils/API";
 import React,  { useState } from 'react'
+import { Redirect } from 'react-router-dom';
 
 
 const useStyles=makeStyles({
@@ -10,11 +11,17 @@ const useStyles=makeStyles({
       flexDirection:"column",
       width:"50%",
       marginLeft:"27%",
-      marginTop:"10%",
-      
+      marginTop:"5%",
+      backgroundColor:"#5C6D37",
+    color:"white",
+    borderRadius:"25px",
+    paddingTop:"7%",
+    opacity:".90"
     },
     inputStyles:{
-      margin:"30px"
+      margin:"30px",
+      color:"black",
+    backgroundColor:"white"
     },
     altBtn:{
         fontFamily:"Sans-serif",
@@ -34,7 +41,7 @@ function Signup(){
 
     function handleSubmit(e) {
         e.preventDefault()
-
+      console.log("hit", signUpState)
         API.signup( signUpState)
                .then(setSignUpState({ username: '', email: '', password: '' }))
             //    .then(AUTH.login(username, password))           
@@ -48,7 +55,9 @@ function Signup(){
     }
 
 
-
+    if (loggedIn) {
+      return <Redirect to={{ pathname: "/Events" }} />;
+  } else {
     return(
         
         <form onSubmit={handleSubmit} >
@@ -65,14 +74,14 @@ function Signup(){
         
         <Input placeholder="Email" name="email" value={email} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
        
-        <Button variant="contained"  className={classes.inputStyles} color="primary">
+        <Button variant="contained"  className={classes.inputStyles} color="primary" onClick={handleSubmit}>
             Create Account
         </Button>
        <p className={classes.altBtn} >Already have an account?<Button href="/login" color="primary">Login</Button></p>
         </Box>
       </form>
       
-    );
+    )};
     }
     
     export default Signup;

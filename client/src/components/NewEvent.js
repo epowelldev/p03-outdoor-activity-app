@@ -2,7 +2,7 @@ import {Button, Input, Box, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import API from "../utils/API";
 import React,  { useState, useRef, } from 'react'
-
+import EVENT from "../utils/EVENT"
 
 const useStyles = makeStyles({
     formStyles:{
@@ -32,10 +32,10 @@ function NewEvent(){
         const time=dateTime[1]
         setEventState({ name, address, description, date,time })
         console.log( name, address, description, date,time)
-        API.createEvent({ name, address, description, date,time }).then((res) => {
+        EVENT.addEvent({ name, address, description, date,time }).then((res) => {
             console.log(res.data)
             setEventState({ name: '', address: '' ,description:'' })
-         
+            window.location.href="/events"
         })
        
     }
