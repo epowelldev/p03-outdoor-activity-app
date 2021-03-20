@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Events</h1>
+
+  
+</body>
+
+
+<script>
+$.ajax({ url: "http://localhost:3001/api/events/all", method: "GET" })
+      .then(function(events){
+        console.log(events);
+        
+      })
+
+</script>
+
+</html>

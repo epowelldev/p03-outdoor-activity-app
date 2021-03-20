@@ -1,5 +1,5 @@
 const db = require("../model");
-const passport = require("../passport");
+// const passport = require("../passport");
 
 
 
@@ -99,6 +99,8 @@ module.exports = {
         .catch(err => res.json(err))
 
   }
+
+
 };
 
 

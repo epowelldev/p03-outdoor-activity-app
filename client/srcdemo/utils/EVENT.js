@@ -10,7 +10,7 @@ const EVENTS = {
     return axios.post('/api/events/add', newEvent);
   },
   updateEvent: function (id,updatedEvent) {
-    return axios.post(`/api/events/${id}`, updatedEvent);
+    return axios.put(`/api/events/${id}`, updatedEvent);
   },
   // join an event
   joinEvent: function (newAttendee) {
