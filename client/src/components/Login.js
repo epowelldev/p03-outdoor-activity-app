@@ -15,12 +15,12 @@ const useSStyles=makeStyles({
     width:"40%",
     justifyContent:"space-evenly",
     marginLeft:"27%",
-    marginTop:"17%",
+    marginTop:"13%",
     backgroundColor:"#5C6D37",
     color:"white",
     borderRadius:"25px",
     paddingTop:"7%",
-    
+    opacity:".90"
   },
   inputStyles:{
     margin:"30px",
@@ -31,6 +31,10 @@ const useSStyles=makeStyles({
     fontFamily:"Sans-serif",
     marginLeft:"22%"
   },
+  title:{
+    fontFamily:"Sans-serif",
+    marginLeft:"30%"
+  }
  
 });
 
@@ -79,7 +83,7 @@ if(loggedIn){
       <form onSubmit={handleSubmit} > 
       
         <Box className={classes.formStyles}>
-
+          <h2 className={classes.title}>Join us Outside</h2>
           <Input placeholder="UserName" className={classes.inputStyles} name="username" value={username} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
           <Input placeholder="Password" className={classes.inputStyles} name="password" value={password} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
           <Button variant="contained" className={classes.inputStyles} color="primary">

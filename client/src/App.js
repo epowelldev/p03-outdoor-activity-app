@@ -15,7 +15,7 @@ import EventsPage from "./components/pages/EventsPage";
 function App() {
   return (
     <Router>
-      <Container>
+      <Container maxWidth={false} disableGutters={true}>
         {/* <Navbar /> */}
         <Switch>
           <Route exact path="/" component={Home} />

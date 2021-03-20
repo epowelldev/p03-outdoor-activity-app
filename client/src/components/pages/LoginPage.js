@@ -14,7 +14,7 @@ const useStyles=makeStyles({
         width:"100vw",
         display:"flex",
         flexDirection:"column",
-        justifyContent:"space-evenly",
+        justifyContent:"start",
         marginTop:"0",
         marginLeft:"0",
         margin:"0",

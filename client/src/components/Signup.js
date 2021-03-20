@@ -2,6 +2,7 @@ import {Button, Input, Box} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import API from "../utils/API";
 import React,  { useState } from 'react'
+import { Redirect } from 'react-router-dom';
 
 
 const useStyles=makeStyles({
@@ -48,7 +49,9 @@ function Signup(){
     }
 
 
-
+    if (loggedIn) {
+      return <Redirect to={{ pathname: "/Events" }} />;
+  } else {
     return(
         
         <form onSubmit={handleSubmit} >
@@ -72,7 +75,7 @@ function Signup(){
         </Box>
       </form>
       
-    );
+    )};
     }
     
     export default Signup;
