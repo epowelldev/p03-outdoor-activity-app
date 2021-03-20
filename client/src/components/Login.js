@@ -57,6 +57,7 @@ function Login(){
 
   function handleSubmit(e) {
       e.preventDefault()
+      console.log("hit")
       API.login(username, password).then((res) => {
           console.log(res.data)
           setLoginState({ username: '', email: '', password: '' })
@@ -86,7 +87,7 @@ if(loggedIn){
           <h2 className={classes.title}>Join us Outside</h2>
           <Input placeholder="UserName" className={classes.inputStyles} name="username" value={username} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
           <Input placeholder="Password" className={classes.inputStyles} name="password" value={password} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
-          <Button variant="contained" className={classes.inputStyles} color="primary">
+          <Button variant="contained" className={classes.inputStyles} color="primary" onClick={handleSubmit}>
               Login
           </Button>
           <p className={classes.altBtn}>Don't have an account?<Button href="/signup" color="primary">Signup</Button></p>

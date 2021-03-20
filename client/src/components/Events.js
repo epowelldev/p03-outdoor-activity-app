@@ -118,7 +118,7 @@ function Events(){
         {loggedIn &&
             <div>
                 <button onClick={logOut}> log out </button>
-                <h3><Link to="/AddEvents">Add event</Link></h3>
+                <h3><Link to="/newEvent">Add event</Link></h3>
 
                 <h1>All events</h1>
                 <ul>

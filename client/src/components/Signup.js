@@ -11,11 +11,17 @@ const useStyles=makeStyles({
       flexDirection:"column",
       width:"50%",
       marginLeft:"27%",
-      marginTop:"10%",
-      
+      marginTop:"5%",
+      backgroundColor:"#5C6D37",
+    color:"white",
+    borderRadius:"25px",
+    paddingTop:"7%",
+    opacity:".90"
     },
     inputStyles:{
-      margin:"30px"
+      margin:"30px",
+      color:"black",
+    backgroundColor:"white"
     },
     altBtn:{
         fontFamily:"Sans-serif",
