@@ -3,6 +3,7 @@ import {Button, Input, Box} from '@material-ui/core';
 import API from "../utils/API"
 import { useEffect, useState } from 'react';
 import { Redirect } from "react-router-dom";
+import LoginPic from "../assets/loginPic.jpeg";
 
 const useStyles=makeStyles({
   formStyles:{
@@ -14,17 +15,19 @@ const useStyles=makeStyles({
     backgroundColor:"#5C6D37",
     color:"white",
     borderRadius:"25px",
-    paddingTop:"7%"
+    paddingTop:"7%",
+    
   },
   inputStyles:{
     margin:"30px",
     color:"black",
-    backgroundColor:"#90A955"
+    backgroundColor:"white"
   },
   altBtn:{
     fontFamily:"Sans-serif",
     marginLeft:"22%"
-  }
+  },
+ 
 });
 
 
@@ -68,7 +71,8 @@ if(loggedIn){
   return <Redirect to={{ pathname: "/Events" }} />;
 } else{
     return(
-      <form onSubmit={handleSubmit}> 
+      
+      <form onSubmit={handleSubmit} > 
       
         <Box className={classes.formStyles}>
 
@@ -82,6 +86,7 @@ if(loggedIn){
         </Box>
 
       </form>
+    
     );
   }
 }
