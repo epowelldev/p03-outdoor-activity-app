@@ -5,6 +5,7 @@ import USER from '../utils/USER'
 import { Link } from 'react-router-dom';
 import { Modal, Button } from "@material-ui/core";
 import API from '../utils/API';
+import EventsTable from './EventsTable';
 
 
 function Events(){
@@ -102,6 +103,7 @@ function Events(){
         function eventInfo(eventId) {
             EVENT.eventInfo(eventId).then(res => {
                 console.log(res.data)
+                return(<p>{res.data}</p>)
             })
         }
     
@@ -121,7 +123,7 @@ function Events(){
                 <h3><Link to="/newEvent">Add event</Link></h3>
 
                 <h1>All events</h1>
-                <ul>
+                {/* <ul>
                     {eventsState.map(event => (
                 
                         <li key={event._id}>{event.name} <button onClick={() => eventInfo(event._id)}>Event Info</button><button onClick={() => joinEvent(event._id)}>join event</button> </li>
@@ -129,29 +131,31 @@ function Events(){
 
                     ))}
 
-                </ul>
+                </ul> */}
+
+                <EventsTable events={eventsState} />
 
                 <h1> {userState.username}'s events joined</h1>
 
-                <ul>
+                {/* <ul>
                     {myEventsState.map(myEvent => (
                         <li key={myEvent._id}>{myEvent.name} || {myEvent.address} || {myEvent.date}  <button onClick={() => leaveEvent(myEvent._id)}> Leave Event</button> </li>
                     ))
                     }
-                </ul>
+                </ul> */}
 
-
+                <EventsTable events={myEventsState} />
                 <h1> {userState.username}'s events organized</h1>
 
-                <ul>
+                {/* <ul>
                     {myOrganizedState.map(myOrganizedEvent => (
                         <li key={myOrganizedEvent._id}>{myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}
                         
                         <button  onClick={() => setShow({isVisible:true, updateEventInfo:myOrganizedEvent})}> update event</button> <button > Remove Event</button>  </li>
                     ))
                     }
-                </ul>
-
+                </ul> */}
+                <EventsTable events={myOrganizedState} />
             </div>
         }
         {!loggedIn &&
