@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { Modal, Button } from "@material-ui/core";
 import API from '../utils/API';
 import EventsTable from './EventsTable';
+import JoinedEventsTable from './JoinedEventsTable';
+import CreatedEventsTable from './CreatedEventsTabe';
 
 
 function Events(){
@@ -144,7 +146,7 @@ function Events(){
                     }
                 </ul> */}
 
-                <EventsTable events={myEventsState} />
+                <JoinedEventsTable events={myEventsState} />
                 <h1> {userState.username}'s events organized</h1>
 
                 {/* <ul>
@@ -155,7 +157,7 @@ function Events(){
                     ))
                     }
                 </ul> */}
-                <EventsTable events={myOrganizedState} />
+                <CreatedEventsTable events={myOrganizedState} />
             </div>
         }
         {!loggedIn &&

@@ -12,17 +12,6 @@ import EVENT from "../utils/EVENT"
 import { Modal, Button } from "@material-ui/core";
 
 
-const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'address', label: 'Address', minWidth: 170 },
-  { id: 'date', label: 'Date', minWidth: 170,  },
-  { id: 'action', label:'Action', minWidth:100}
-  ];
-
-// function createData({name, address, date}) {
-  
-//   return { name, address, date };
-// }
 const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
@@ -41,12 +30,16 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: 440,
       },
   }));
+  const columns = [
+    { id: 'name', label: 'Name', minWidth: 170 },
+    { id: 'address', label: 'Address', minWidth: 170 },
+    { id: 'date', label: 'Date', minWidth: 170,  },
+    { id: 'action', label:'Action', minWidth:100}
+    ];
 
 
-
-
-export default function EventsTable({events}) {
-  const classes = useStyles();
+function CreatedEventsTable({events}){
+    const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const rows = [];
@@ -62,19 +55,12 @@ export default function EventsTable({events}) {
     setOpen(false);
   };
 
-
   for(let i=0;i<events.length;i++){
       
-      // eslint-disable-next-line no-unused-expressions
-      rows.push({...events[i],action:<Button type="button" onClick={()=>{eventInfo(events[i]._id)}}>View</Button>})
-  }
-
-  function joinEvent(eventId) {
-    EVENT.joinEvent(eventId).then(window.location.replace("/Events"))
-
+    // eslint-disable-next-line no-unused-expressions
+    rows.push({...events[i],action:<Button type="button" onClick={()=>{eventInfo(events[i]._id)}}>View</Button>})
 }
-
-  const handleChangePage = (event, newPage) => {
+const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
@@ -88,24 +74,21 @@ export default function EventsTable({events}) {
        
     })
 }
-// const body=(<div  className={classes.paper}>
-//     <h2 id="simple-modal-title">{currentEvent.name}</h2>
-//     <p id="simple-modal-description">
-//       {currentEvent.address}
-//     </p>
-//     <p id="simple-modal-description">
-//       {currentEvent.date}
-//     </p>
-//     <p id="simple-modal-description">
-//       {currentEvent.description}
-//     </p>
-//     <button onClick={() => joinEvent(currentEvent._id)}>join event</button>
-//   </div>)
-  const handleChangeRowsPerPage = (event) => {
+
+const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
+//   function updateEvent(e) {
+//     e.preventDefault()
+
+//     EVENT.updateEvent(show.updateEventInfo._id, updateEventState).then(res => {
+//         console.log(res.data)
+//     })       
+//     .then(window.location.replace("/Events"))         
+
+// }
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -163,12 +146,13 @@ export default function EventsTable({events}) {
     <p id="simple-modal-description">
       {currentEvent.description}
     </p>
-    <button onClick={() => joinEvent(currentEvent._id)}>join event</button>
-    
+    <button>Update event</button>
+    {/* onClick={() => joinEvent(currentEvent._id)} */}
   </div>
       </Modal>
     </Paper>
 
   );
-  
 }
+
+export default CreatedEventsTable;
