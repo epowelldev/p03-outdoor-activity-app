@@ -3,12 +3,24 @@ import React, { useState, useEffect } from 'react';
 import EVENT from "../utils/EVENT"
 import USER from '../utils/USER'
 import { Link } from 'react-router-dom';
-import { Modal, Button } from "@material-ui/core";
+import { Modal, Button, makeStyles } from "@material-ui/core";
 import API from '../utils/API';
+import EventsTable from './EventsTable';
+import JoinedEventsTable from './JoinedEventsTable';
+import CreatedEventsTable from './CreatedEventsTabe';
 
+
+const useSStyles=makeStyles({
+    btnStyles:{
+        margin:"5px",
+        backgroundColor:"#5C6D37",
+        color:"white"
+    }
+})
 
 function Events(){
-    
+    const classes = useSStyles();
+
         const [show, setShow] = useState({isVisible:false, updateEventInfo:"" });
         const handleClose = () => setShow({isVisible:false, updateEventInfo:"" });
     
@@ -102,6 +114,7 @@ function Events(){
         function eventInfo(eventId) {
             EVENT.eventInfo(eventId).then(res => {
                 console.log(res.data)
+                return(<p>{res.data}</p>)
             })
         }
     
@@ -117,11 +130,11 @@ function Events(){
     return(<>
         {loggedIn &&
             <div>
-                <button onClick={logOut}> log out </button>
-                <h3><Link to="/newEvent">Add event</Link></h3>
+                <Button variant="contained" className={classes.btnStyles} onClick={logOut}> log out </Button>
+                <Button variant="contained" className={classes.btnStyles} href="/newEvent">Create Event</Button>
 
                 <h1>All events</h1>
-                <ul>
+                {/* <ul>
                     {eventsState.map(event => (
                 
                         <li key={event._id}>{event.name} <button onClick={() => eventInfo(event._id)}>Event Info</button><button onClick={() => joinEvent(event._id)}>join event</button> </li>
@@ -129,29 +142,31 @@ function Events(){
 
                     ))}
 
-                </ul>
+                </ul> */}
+
+                <EventsTable events={eventsState} />
 
                 <h1> {userState.username}'s events joined</h1>
 
-                <ul>
+                {/* <ul>
                     {myEventsState.map(myEvent => (
                         <li key={myEvent._id}>{myEvent.name} || {myEvent.address} || {myEvent.date}  <button onClick={() => leaveEvent(myEvent._id)}> Leave Event</button> </li>
                     ))
                     }
-                </ul>
+                </ul> */}
 
-
+                <JoinedEventsTable events={myEventsState} />
                 <h1> {userState.username}'s events organized</h1>
 
-                <ul>
+                {/* <ul>
                     {myOrganizedState.map(myOrganizedEvent => (
                         <li key={myOrganizedEvent._id}>{myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}
                         
                         <button  onClick={() => setShow({isVisible:true, updateEventInfo:myOrganizedEvent})}> update event</button> <button > Remove Event</button>  </li>
                     ))
                     }
-                </ul>
-
+                </ul> */}
+                <CreatedEventsTable events={myOrganizedState} />
             </div>
         }
         {!loggedIn &&

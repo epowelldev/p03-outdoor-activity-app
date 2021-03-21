@@ -1,10 +1,13 @@
 import Events from "../Events"
-
+import Navbar from "../layout/Navbar"
 function EventsPage(){
 
     return(
-    <Events/>);
-
+        <div>
+    <Navbar/>
+    <Events/>
+    </div>
+    );
 }
 
 

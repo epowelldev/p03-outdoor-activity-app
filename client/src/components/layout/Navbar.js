@@ -33,9 +33,9 @@ export default () => {
             <IconButton edge="start" aria-label="menu" className={classes.menuButton}>
               <MenuIcon />
             </IconButton>
-            <Button>Login</Button>
-            <Button>Home</Button>
-            <Button>Dashboard</Button>
+            <Button href="/login">Login</Button>
+            <Button href="/">Home</Button>
+            <Button href="/events">Dashboard</Button>
             <IconButton edge="end" aria-label="logout">
               <ExitToAppIcon />
             </IconButton>
