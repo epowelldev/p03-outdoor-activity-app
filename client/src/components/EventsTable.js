@@ -9,6 +9,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import EVENT from "../utils/EVENT"
+import { Modal, Button } from "@material-ui/core";
+
+
 const columns = [
   { id: 'name', label: 'Name', minWidth: 170 },
   { id: 'address', label: 'Address', minWidth: 170 },
@@ -20,27 +23,56 @@ const columns = [
   
 //   return { name, address, date };
 // }
+const useStyles = makeStyles((theme) => ({
+    paper: {
+      position: 'absolute',
+      width: 400,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      top:'50',
+      left:'50'
+    },
+    root: {
+        width: '90%',
+      },
+      container: {
+        maxHeight: 440,
+      },
+  }));
 
 
 
-const useStyles = makeStyles({
-  root: {
-    width: '90%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
 
 export default function EventsTable({events}) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const rows = [];
+  const [open, setOpen] = React.useState(false);
+  const[currentEvent,setCurrentEvent]=React.useState({});
+
+  const handleOpen = () => {
+    setOpen(true);
+    
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
   for(let i=0;i<events.length;i++){
       
-      rows.push({...events[i],view:<button onClick={() => eventInfo(events[i]._id)}>View</button>})
+      // eslint-disable-next-line no-unused-expressions
+      rows.push({...events[i],view:<Button type="button" onClick={()=>{eventInfo(events[i]._id)}}>View</Button>})
   }
+
+  function joinEvent(eventId) {
+    EVENT.joinEvent(eventId).then(window.location.replace("/Events"))
+
+}
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -49,9 +81,26 @@ export default function EventsTable({events}) {
   function eventInfo(eventId) {
     EVENT.eventInfo(eventId).then(res => {
         console.log(res.data)
-        return(<p>{res.data}</p>)
+        const event=res.data.eventInfo
+        setCurrentEvent(event)
+        
+        setOpen(true);
+       
     })
 }
+// const body=(<div  className={classes.paper}>
+//     <h2 id="simple-modal-title">{currentEvent.name}</h2>
+//     <p id="simple-modal-description">
+//       {currentEvent.address}
+//     </p>
+//     <p id="simple-modal-description">
+//       {currentEvent.date}
+//     </p>
+//     <p id="simple-modal-description">
+//       {currentEvent.description}
+//     </p>
+//     <button onClick={() => joinEvent(currentEvent._id)}>join event</button>
+//   </div>)
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
@@ -101,6 +150,22 @@ export default function EventsTable({events}) {
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
+      <Modal open={open}
+        onClose={handleClose}>
+            <div  className={classes.paper}>
+    <h2 id="simple-modal-title">{currentEvent.name}</h2>
+    <p id="simple-modal-description">
+      {currentEvent.address}
+    </p>
+    <p id="simple-modal-description">
+      {currentEvent.date}
+    </p>
+    <p id="simple-modal-description">
+      {currentEvent.description}
+    </p>
+    <button onClick={() => joinEvent(currentEvent._id)}>join event</button>
+  </div>
+      </Modal>
     </Paper>
 
   );
