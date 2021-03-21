@@ -3,15 +3,24 @@ import React, { useState, useEffect } from 'react';
 import EVENT from "../utils/EVENT"
 import USER from '../utils/USER'
 import { Link } from 'react-router-dom';
-import { Modal, Button } from "@material-ui/core";
+import { Modal, Button, makeStyles } from "@material-ui/core";
 import API from '../utils/API';
 import EventsTable from './EventsTable';
 import JoinedEventsTable from './JoinedEventsTable';
 import CreatedEventsTable from './CreatedEventsTabe';
 
 
+const useSStyles=makeStyles({
+    btnStyles:{
+        margin:"5px",
+        backgroundColor:"#5C6D37",
+        color:"white"
+    }
+})
+
 function Events(){
-    
+    const classes = useSStyles();
+
         const [show, setShow] = useState({isVisible:false, updateEventInfo:"" });
         const handleClose = () => setShow({isVisible:false, updateEventInfo:"" });
     
@@ -121,8 +130,8 @@ function Events(){
     return(<>
         {loggedIn &&
             <div>
-                <button onClick={logOut}> log out </button>
-                <h3><Link to="/newEvent">Add event</Link></h3>
+                <Button variant="contained" className={classes.btnStyles} onClick={logOut}> log out </Button>
+                <Button variant="contained" className={classes.btnStyles} href="/newEvent">Create Event</Button>
 
                 <h1>All events</h1>
                 {/* <ul>
