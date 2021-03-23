@@ -15,8 +15,8 @@ import SignupPage from "./components/pages/SignupPage";
 
 function App() {
   return (
-    <Router>
-      <Container maxWidth={false} disableGutters={true}>
+    <Container maxWidth={false} disableGutters={true}>
+      <Router> 
         {/* <Navbar /> */}
         <Switch>
           <Route exact path="/" component={Home} />
@@ -27,8 +27,9 @@ function App() {
           <Route exact path="/Events" component={EventsPage} />
           <Route component={NotFound} />
         </Switch>
-      </Container>
-    </Router>
+      </Router>
+    </Container>
+    
   );
 }
 
