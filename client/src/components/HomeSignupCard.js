@@ -7,32 +7,34 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 270,
+    minWidth: 15,
+    minHeight:25,
     margin:"1%",
-    height:150
+    height:150,
+    width:240,
+    backgroundColor:"#B39180",
+    color:"white"
   },
   
   title: {
     fontSize: 14,
   },
-  pos: {
-    marginBottom: 12,
-  },
+  
 });
 
 export default function HomeSignupCard() {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        <Typography className={classes.title} gutterBottom>
+        <Typography className={classes.title} >
           Create an account to Post and Join Events!
         </Typography>
       </CardContent>
       <CardActions>
-      <Button variant="outlined" size="large" color="primary" className={classes.margin}>
+      <Button variant="outlined" href="/signup"size="large" color="primary" className={classes.margin}>
           Signup
         </Button>
       </CardActions>

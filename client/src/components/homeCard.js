@@ -8,17 +8,23 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     minWidth: 270,
-    height:310,
+    // minHeight:"auto",
+    // height:"75vh",
     maxWidth:"75%",
-    margin:"1%"
+    margin:"1%",
+    // backgroundColor:"#B39180",
+    color:"black",
+    // marginTop:"5%",
+    marginLeft:"4%",
+    fontSize: '2rem',
+    fontWeight: 800,
   },
   
   title: {
     fontSize: 14,
   },
-  pos: {
-    marginBottom: 12,
-  },
+ 
+ 
 });
 
 export default function HomeCard() {
@@ -26,15 +32,13 @@ export default function HomeCard() {
   
 
   return (
-    <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Typography variant="body1" component="p">
-          JUO is desgined to foster the outdoor recreation community. Whether you are an experienced adventurer or just looking
-          to enjoy the outdoors you can find activities that suit you. Our goal is to provide a space for people to connect
-          and enjoy to the great outdoors together. Find new friends, explore new places and Join Us Outside!
+    // <Card className={classes.root} >
+    //   <CardContent>
+        <Typography  className={classes.root} variant="h3"  >
+          Explore the Outdoors with new Friends!
           
         </Typography>
-      </CardContent>
-    </Card>
+    //   </CardContent>
+    // </Card>
   );
 }

@@ -7,19 +7,19 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 270,
+    minWidth: 70,
+    minHeight:70,
     margin:"1%",
-    maxHeight:200,
-    minHeight:150
+    height:150,
+    width:240,
+    backgroundColor:"#B39180",
+    color:"white"
   },
   
   title: {
     fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+  
+}});
 
 export default function HomeEventsCard() {
   const classes = useStyles();
@@ -33,7 +33,7 @@ export default function HomeEventsCard() {
         </Typography>
       </CardContent>
       <CardActions>
-      <Button variant="outlined" size="large" color="primary" className={classes.margin}>
+      <Button variant="outlined" href="/events" size="large" color="primary" className={classes.margin}>
           View Events
         </Button>
       </CardActions>
