@@ -2,8 +2,11 @@
 import { Fragment } from "react";
 import Navbar from "../layout/Navbar";
 import { makeStyles } from '@material-ui/core/styles';
-
+import HomePic from "../../assets/homePic.jpg"
 import { Box } from "@material-ui/core";
+import HomeCard from "../homeCard";
+import HomeSignupCard from "../HomeSignupCard";
+import HomeEventsCard from "../HomeEventsCard";
 
 const useStyles=makeStyles({
   HeaderStyle:{
@@ -15,24 +18,16 @@ const useStyles=makeStyles({
     padding:"2%",
     marginTop:"3%",
     display:"flex",
-    justifyContent:"space-around"
+    justifyContent:"space-around",
+    backgroundImage:`url(${HomePic})`,
+    backgroundSize:"cover",
+    backgroundPosition:"center",
   },
-  // ImgStyle:{
-  //     backgroundImage:`url(${HomePic})`,
-  //     backgroundSize:"cover",
-  //     backgroundPosition:"center",
-  //     height:"100vh",
-  //     width:"100vw",
-  //     display:"flex",
-  //     flexDirection:"column",
-  //     justifyContent:"start",
-  //     marginTop:"0",
-  //     marginLeft:"0",
-  //     margin:"0",
-  //     padding:"0",
-      
-    
-  // }
+  contentStyle:{
+    display:"flex",
+    flexWrap:"wrap",
+    // justifyContent:"space-around"
+  }
 });
 
 
@@ -42,9 +37,20 @@ export default () => {
   return(
     <Fragment>
       <Box >
+      
       <div className={classes.HeaderStyle}>
+        
       <h1>Join Us Outside</h1>
+      
       <Navbar/>
+      
+      </div>
+      <div className={classes.contentStyle}>
+      <HomeCard />
+      <div style={{display:"flex",flexDirection:"column",marginTop:"1%"}}>
+      <HomeSignupCard/>
+      <HomeEventsCard/>
+      </div>
       </div>
       </Box>
     </Fragment>
