@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import API from "../utils/API";
 import React,  { useState, useRef, } from 'react'
 import EVENT from "../utils/EVENT"
-
+import newEventPic from "../assets/newEventPic.jpg";
 const useStyles = makeStyles({
     formStyles:{
       display:"flex",
@@ -11,11 +11,38 @@ const useStyles = makeStyles({
       width:"50%",
       marginLeft:"27%",
       marginTop:"10%",
-      
+      backgroundColor:"#5C6D37",
+      color:"white",
+      borderRadius:"25px",
+      paddingTop:"7%",
+      opacity:".90"
     },
     inputStyles:{
-      margin:"30px"
+      margin:"30px",
+      color:"black",
+      backgroundColor:"white"
     },
+    ImgStyle:{
+      backgroundImage:`url(${newEventPic})`,
+      backgroundSize:"cover",
+      backgroundPosition:"center",
+      height:"100vh",
+      width:"100vw",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"start",
+      marginTop:"0",
+      marginLeft:"0",
+      margin:"0",
+      padding:"0",
+      
+    
+  },
+  title:{
+    fontFamily:"Sans-serif",
+    marginLeft:"30%",
+    marginBottom:"10%"
+  }
     
   });
 
@@ -49,9 +76,10 @@ function NewEvent(){
     }
 
     return(
+      <Box className={classes.ImgStyle}>
         <form onSubmit={handleSubmit} >
         <Box className={classes.formStyles}>
-            
+        <h1 className={classes.title}>Create New Event</h1>
         <Input placeholder="Event Title"  name="name" value={name} onChange={handleChange} className={classes.inputStyles}inputProps={{ 'aria-label': 'Title' }} />
             
             
@@ -70,6 +98,7 @@ function NewEvent(){
        
         </Box>
       </form>
+      </Box>
     );
 }
 

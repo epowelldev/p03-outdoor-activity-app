@@ -26,6 +26,11 @@ const useStyles=makeStyles({
     altBtn:{
         fontFamily:"Sans-serif",
         marginLeft:"22%"
+      },
+      title:{
+        fontFamily:"Sans-serif",
+        marginLeft:"39%",
+        marginBottom:"5%"
       }
   });
 
@@ -62,7 +67,7 @@ function Signup(){
         
         <form onSubmit={handleSubmit} >
         <Box className={classes.formStyles}>
-            
+        <h1 className={classes.title}>Signup</h1>
         <Input placeholder="First Name" onChange={handleChange} className={classes.inputStyles}inputProps={{ 'aria-label': 'description' }} />
             
             
