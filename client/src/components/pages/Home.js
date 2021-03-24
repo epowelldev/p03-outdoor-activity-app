@@ -6,9 +6,17 @@ export default () => {
 
   return(
     <Fragment>
-      <div style={{backgroundColor:"#5C6D37", color:"white",fontFamily:"Sans-serif",marginLeft:"0",width:"100%", padding:"4%"}}>
-      <h1>Join Us Outside</h1>
       <Navbar/>
+
+      <div style={{
+        backgroundColor:"#5C6D37",
+        color:"white",
+        fontFamily:"Sans-serif",
+        marginLeft:"0",
+        width:"100%",
+        padding:"4%"
+      }}>
+        <h1>Join Us Outside</h1>
       </div>
     </Fragment>
   );

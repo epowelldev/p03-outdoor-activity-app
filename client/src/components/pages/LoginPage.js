@@ -19,7 +19,6 @@ const useStyles=makeStyles({
         marginLeft:"0",
         margin:"0",
         padding:"0"
-      
     }
 });
 
@@ -38,7 +37,7 @@ function LoginPage(){
         
         <Box className={classes.ImgStyle} >
             <Box>
-            <Login />
+                <Login />
             </Box>
         </Box>
         
