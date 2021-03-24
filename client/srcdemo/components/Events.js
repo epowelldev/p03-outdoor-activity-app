@@ -109,9 +109,14 @@ const Events = () => {
             console.log(res.data)
         })       
         .then(window.location.replace("/Events"))         
-
     }
 
+
+    function deleteEvent(id) {
+        EVENT.deleteEvent(id,userState._id )
+        .then(window.location.replace("/Events"))
+       console.log(id, userState._id )
+   }
 
     return (
         <>
@@ -147,7 +152,7 @@ const Events = () => {
                         {myOrganizedState.map(myOrganizedEvent => (
                             <li key={myOrganizedEvent._id}>{myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}
                             
-                            <button onClick={() => setShow({isVisible:true, updateEventInfo:myOrganizedEvent})}> update event</button> <button > Remove Event</button>  </li>
+                            <button onClick={() => setShow({isVisible:true, updateEventInfo:myOrganizedEvent})}> update event</button> <button onClick={() => deleteEvent(myOrganizedEvent._id)} > Remove Event</button> </li>
                         ))
                         }
                     </ul>

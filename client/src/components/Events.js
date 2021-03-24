@@ -8,6 +8,7 @@ import API from '../utils/API';
 import EventsTable from './EventsTable';
 import JoinedEventsTable from './JoinedEventsTable';
 import CreatedEventsTable from './CreatedEventsTabe';
+import PlsLogin from './PlsLogin';
 
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -137,15 +138,16 @@ function Events(){
         .then(window.location.replace("/Events"))         
 
     }
+                <h1>All events</h1>
+                
 
 
     return(
         <Fragment>
-            {loggedIn &&
+            { loggedIn &&
                 <div>
                     <Button variant="contained" className={classes.btnStyles} onClick={logOut}> log out </Button>
                     <Button variant="contained" className={classes.btnStyles} href="/newEvent">Create Event</Button>
-
 
                         {/* <h1>All events</h1>
                         <EventsTable events={eventsState} />
@@ -156,88 +158,11 @@ function Events(){
 
                         <SimpleTabs />
                  
-                        {/* <ul>
-                            {eventsState.map(event => (
-                        
-                                <li key={event._id}>{event.name} <button onClick={() => eventInfo(event._id)}>Event Info</button><button onClick={() => joinEvent(event._id)}>join event</button> </li>
-
-
-                            ))}
-
-                        </ul> */}
-
-                        {/* <ul>
-                            {myEventsState.map(myEvent => (
-                                <li key={myEvent._id}>{myEvent.name} || {myEvent.address} || {myEvent.date}  <button onClick={() => leaveEvent(myEvent._id)}> Leave Event</button> </li>
-                            ))
-                            }
-                        </ul> */}
-                    
-                        {/* <ul>
-                            {myOrganizedState.map(myOrganizedEvent => (
-                                <li key={myOrganizedEvent._id}>{myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}
-                                
-                                <button  onClick={() => setShow({isVisible:true, updateEventInfo:myOrganizedEvent})}> update event</button> <button > Remove Event</button>  </li>
-                            ))
-                            }
-                        </ul> */}
-
                 </div>
             }
-            {!loggedIn &&
-                <div>
-                    <h1>please log in to see the events</h1>
-                    <h3><Link to="/Signup">SignUp</Link></h3>
-                    <h3><Link to="/Login">Login</Link></h3>
-                    <h3><Link to="/NewEvent">Add event</Link></h3>
-                </div>
-
-            }
-
-        
-            
-            {/* <Modal open={open}
-                    onClose={handleClose}
-                show={show.isVisible} onHide={handleClose}
-                aria-labelledby="simple-modal-title"
-    aria-describedby="simple-modal-description">
-        <div>
-                <div closeButton>
-                    <h2 id="modal-title">Modal heading</h2>
-                </div>
-                <p id="modal-description">
-                <h1>event id: </h1>
-
-                    <form action="/" >
-                        <label htmlFor="name">activity name :</label>
-                        <input type="text" id="name" name="name" placeholder="avtivity Name" value={name} onChange={handleUpdateEvent}></input>
-                        <label htmlFor="address">address:</label>
-                        <input type="text" id="address" name="address" placeholder="address" value={address} onChange={handleUpdateEvent}></input>
-                        <label htmlFor="date">date:</label>
-                        <input type="date" id="date" name="date" placeholder="date" value={date} onChange={handleUpdateEvent}></input>
-                        <label htmlFor="time">time:</label>
-                        <input type="time" id="time" name="time" placeholder="time" value={time} onChange={handleUpdateEvent}></input>
-                        <label htmlFor="description">description:</label>
-                        <input type="description" id="description" name="description" placeholder="description" value={description} onChange={handleUpdateEvent}></input>
-                        <input type="submit" value="Submit" onClick={updateEvent}></input>
-
-                    </form>
-
-                </p>
-            
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-        </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-        </Button>
-        </div>
-            </Modal> */}
-
-
-        </Fragment>
+            { !loggedIn && <PlsLogin/> }
+        </Fragment>               
     );
-
 }
 
 export default Events;
