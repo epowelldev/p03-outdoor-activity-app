@@ -124,7 +124,21 @@ module.exports = {
        
     },
 
+    deleteEvent: (req, res) => {
+        let id =  req.params.id;
+        console.log(id,"-------")
+        console.log(req.body.userId)
 
+        db.Events.findByIdAndDelete(id)
+            .then(db.User.findByIdAndUpdate(req.body.userId,
+                    { $pullAll: { events: [id] } })
+                    .then(() => {
+                        res.json(`${id} has been deleted`);
+                    })
+            )
+            .catch(err => res.status(422).json(err));
+
+    }
 
 
 
