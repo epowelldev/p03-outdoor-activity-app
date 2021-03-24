@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import API from "../utils/API";
 import React,  { useState, useRef, } from 'react'
 import EVENT from "../utils/EVENT"
-import newEventPic from "../assets/newEventPic.jpeg";
+import newEventPic from "../assets/newEventPic.jpg";
 const useStyles = makeStyles({
     formStyles:{
       display:"flex",

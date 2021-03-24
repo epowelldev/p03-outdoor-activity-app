@@ -2,7 +2,7 @@
 import { Fragment } from "react";
 import Navbar from "../layout/Navbar";
 import { makeStyles } from '@material-ui/core/styles';
-import HomePic from "../../assets/homePic.JPG";
+
 import { Box } from "@material-ui/core";
 
 const useStyles=makeStyles({

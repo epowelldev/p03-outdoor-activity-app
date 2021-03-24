@@ -1,5 +1,5 @@
 import Signup from "../Signup";
-import SignupPic from "../../assets/signup.jpeg";
+import SignupPic from "../../assets/signupPic.jpeg";
 import { Box, makeStyles } from "@material-ui/core";
 
 
