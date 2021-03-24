@@ -6,7 +6,7 @@ router.get("/all", eventsController.getAllEvents);
 router.post("/add", eventsController.addEvent);
 router.put("/:id", eventsController.updateEvent);
 router.get("/organizer/:id" , eventsController.findOrganizedEvent);
-
+router.delete("/:id", eventsController.deleteEvent)
 router.post("/join", eventsController.joinEvent);
 router.post("/leave", eventsController.leaveFromEvent);
 router.get("/:id", eventsController.eventInfo);

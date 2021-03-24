@@ -25,6 +25,10 @@ const EVENTS = {
   },
   findOrganizedEvent : function (id){
     return axios.get(`api/events/organizer/${id}`)
+  },
+  deleteEvent :function (id,userId) {
+    return axios.delete(`/api/events/${id}`,{userId})
+
   }
 
 
