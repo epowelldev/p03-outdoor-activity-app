@@ -25,7 +25,7 @@ const Events = () => {
     function handleUpdateEvent(e) {
         e.preventDefault();
         setUpdateEvent({ ...updateEventState, [e.target.name]: e.target.value })
-        // console.log(updateEventState)
+     
     }
 
     useEffect(()=>{
@@ -129,7 +129,7 @@ const Events = () => {
                     <ul>
                         {eventsState.map(event => (
                     
-                            <li key={event._id}>{event.name} <button onClick={() => eventInfo(event._id)}>Event Info</button><button onClick={() => joinEvent(event._id)}>join event</button> </li>
+                            <li key={event._id}><img src={event.image.url} alt={event.name} width="50" height="50"></img>{event.name} <button onClick={() => eventInfo(event._id)}>Event Info</button><button onClick={() => joinEvent(event._id)}>join event</button> </li>
 
 
                         ))}
@@ -140,7 +140,7 @@ const Events = () => {
 
                     <ul>
                         {myEventsState.map(myEvent => (
-                            <li key={myEvent._id}>{myEvent.name} || {myEvent.address} || {myEvent.date}  <button onClick={() => leaveEvent(myEvent._id)}> Leave Event</button> </li>
+                            <li key={myEvent._id}><img src={myEvent.image.url} alt={myEvent.name} width="50" height="50"></img>   {myEvent.name} || {myEvent.address} || {myEvent.date}  <button onClick={() => leaveEvent(myEvent._id)}> Leave Event</button> </li>
                         ))
                         }
                     </ul>
@@ -150,7 +150,7 @@ const Events = () => {
 
                     <ul>
                         {myOrganizedState.map(myOrganizedEvent => (
-                            <li key={myOrganizedEvent._id}>{myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}
+                            <li key={myOrganizedEvent._id}> <img src={myOrganizedEvent.image.url} alt={myOrganizedEvent.name} width="50" height="50"></img> {myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}
                             
                             <button onClick={() => setShow({isVisible:true, updateEventInfo:myOrganizedEvent})}> update event</button> <button onClick={() => deleteEvent(myOrganizedEvent._id)} > Remove Event</button> </li>
                         ))
