@@ -48,10 +48,10 @@ function Login(){
   const [logOutState, setLogOutState] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
-      API.logout();
+  // useEffect(() => {
+  //     API.logout();
 
-  }, [logOutState]);
+  // }, [logOutState]);
 
 
 
@@ -86,7 +86,7 @@ if(loggedIn){
         <Box className={classes.formStyles}>
           <h2 className={classes.title}>Join us Outside</h2>
           <Input placeholder="UserName" className={classes.inputStyles} name="username" value={username} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
-          <Input placeholder="Password" className={classes.inputStyles} name="password" value={password} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
+          <Input placeholder="Password" className={classes.inputStyles} type="password" name="password" value={password} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
           <Button variant="contained" className={classes.inputStyles} color="primary" onClick={handleSubmit}>
               Login
           </Button>
