@@ -82,24 +82,19 @@ function NewEvent(){
         <Navbar />
         <Box className={classes.ImgStyle}>
           <form onSubmit={handleSubmit} >
-          <Box className={classes.formStyles}>
-          <h1 className={classes.title}>Create New Event</h1>
-          <Input placeholder="Event Title"  name="name" value={name} onChange={handleChange} className={classes.inputStyles}inputProps={{ 'aria-label': 'Title' }} />
-              
-              <Input placeholder="description"  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
-            
-              <Button onClick={handleSubmit} variant="contained"  className={classes.inputStyles} color="primary">
-                  Create Event
-              </Button  >
-          
-          <Input placeholder="description"  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
-        
-          <Button onClick={handleSubmit} variant="contained"  className={classes.inputStyles} color="primary">
-              Create Event
-          </Button  >
-        
-          </Box>
-        </form>
+            <Box className={classes.formStyles}>
+            <h1 className={classes.title}>Create New Event</h1>
+            <Input placeholder="Event Title"  name="name" value={name} onChange={handleChange} className={classes.inputStyles}inputProps={{ 'aria-label': 'Title' }} />
+            <Input placeholder="Location"  name="address" value={address} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'address' }} />
+            {/* <Input placeholder="Date" ref={date} name="date"  className={classes.inputStyles} inputProps={{ 'aria-label': 'date' }} />
+            <Input placeholder="Time" ref={time}  name="time"  className={classes.inputStyles} inputProps={{ 'aria-label': 'time' }} /> */}
+            <Input placeholder="Event Date and Time"  name="datetimeInput"  onChange={handleChange}  className={classes.inputStyles}  type="datetime-local" />
+            <Input placeholder="description"  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
+            <Button onClick={handleSubmit} variant="contained"  className={classes.inputStyles} color="primary">
+                Create Event
+            </Button  >
+            </Box>
+          </form>
         </Box>
       </Fragment>
     );

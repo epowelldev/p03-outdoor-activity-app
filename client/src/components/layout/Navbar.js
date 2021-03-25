@@ -2,7 +2,6 @@
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from "@material-ui/core/styles";
@@ -47,7 +46,7 @@ export default () => {
 function logOut(e) {
   e.preventDefault();
   API.logout();
-  setLoggedIn(false)
+  setLoggedIn(false);
 }
 
   return (
@@ -58,9 +57,9 @@ function logOut(e) {
             <Button size="large" component={Link} to="/">Join Us Outside</Button>
           </ButtonGroup>
           <ButtonGroup variant="text" color="inherit" >
-            <IconButton edge="start" aria-label="menu" className={classes.menuButton}>
+            {/* <IconButton edge="start" aria-label="menu" className={classes.menuButton}>
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             { !loggedIn ? <Button component={Link} to="/Login" >Login</Button> : [] }
             <Button component={Link} to="/">Home</Button>
             <Button component={Link} to="/events">Dashboard</Button>
@@ -70,7 +69,7 @@ function logOut(e) {
           </ButtonGroup>
         </Toolbar>
       </AppBar>
-      <Toolbar/>
+      <Toolbar className={classes.toolbar} />
     </Fragment>
   );
 }

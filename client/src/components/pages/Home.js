@@ -51,13 +51,15 @@ export default () => {
   const classes = useStyles();
 
   return(
-    <Fragment >
+    <Fragment>
      
       <Box className={classes.bg}>
 
+      
+
         <div className={classes.HeaderStyle}>
-          <h1>Join Us Outside</h1>
           <Navbar/>
+          <h1>Join Us Outside</h1>
         </div>
 
         <Box className={classes.contentStyle}>

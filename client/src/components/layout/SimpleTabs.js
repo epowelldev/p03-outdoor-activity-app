@@ -135,15 +135,13 @@ export default function SimpleTabs() {
   }, []);
 
 
-  
-
   function logOut(e) {
       e.preventDefault();
       API.logout();
       setLoggedIn(false)
   }
   function joinEvent(eventId) {
-      EVENT.joinEvent(eventId).then(window.location.replace("/Events"))
+      EVENT.joinEvent(eventId).then(window.location.replace("/Events"));
 
   }
   function leaveEvent(eventId) {
