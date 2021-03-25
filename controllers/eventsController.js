@@ -1,5 +1,6 @@
 const db = require("../model");
 const Moment =require ("moment")
+const cloudinary = require("cloudinary");
 
 module.exports = {
     getAllEvents: (req, res) => {
@@ -28,6 +29,15 @@ module.exports = {
         const { name, address, date, time, description } = req.body
         let newEvent = {};
 
+        let image = {};
+
+        if (req.file) {
+            image.url = req.file.url;
+            image.id = req.file.public_id;
+        } else {
+            image =req.body.image;
+        }
+
         newEvent.name = name;
         newEvent.address = address;
         //  DATE is ENTERED AS "2020-02-04"
@@ -35,7 +45,7 @@ module.exports = {
         //  TIME IS ENTERED AS "14:00"
         newEvent.time = time;
         newEvent.description = description
-
+        newEvent.image = image;
         if (req.user) {
 
             // takes the organizer's username and finds its objectId 
