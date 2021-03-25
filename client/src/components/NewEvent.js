@@ -92,7 +92,7 @@ function NewEvent(){
             <Input placeholder="description"  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
             <Button onClick={handleSubmit} variant="contained"  className={classes.inputStyles} color="primary">
                 Create Event
-            </Button  >
+            </Button>
             </Box>
           </form>
         </Box>
