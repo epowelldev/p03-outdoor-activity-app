@@ -1,39 +1,17 @@
-/* eslint-disable no-restricted-globals */
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
+import AUTH from "../utils/AUTH"
 import EVENT from "../utils/EVENT"
 import USER from '../utils/USER'
 import { Link } from 'react-router-dom';
-import { Modal, Button, makeStyles, Paper, Tabs, Tab } from "@material-ui/core";
-import API from '../utils/API';
-import EventsTable from './EventsTable';
-import JoinedEventsTable from './JoinedEventsTable';
-import CreatedEventsTable from './CreatedEventsTabe';
-import PlsLogin from './PlsLogin';
+import { Button, Modal } from 'react-bootstrap';
 
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-
-import SimpleTabs from "../components/layout/SimpleTabs";
-
-
-const useSStyles=makeStyles({
-    btnStyles:{
-        margin:"5px",
-        backgroundColor:"#5C6D37",
-        color:"white"
-    }
-})
-
-function Events(){
-    const classes = useSStyles();
+const Events = () => {
 
     const [show, setShow] = useState({isVisible:false, updateEventInfo:"" });
     const handleClose = () => setShow({isVisible:false, updateEventInfo:"" });
 
     const [myEventsState, setmyEventsState] = useState([]);
-    const [myOrganizedState, setMyOrganizedState] = useState([]);
+    const [myOrganizedState, setMyOrganizedState] = useState([])
 
     const [eventsState, setEventsState] = useState([]);
     const [loggedIn, setLoggedIn] = useState(false);
@@ -43,14 +21,40 @@ function Events(){
 
     const [updateEventState, setUpdateEvent] = useState({});
     const { name, address, date, time, description } = updateEventState;
-
-
+    
+    const[imageState,SetImageState]=useState({})
+    const setImage = event => {
+        SetImageState({image: event.target.files[0]})
+    }
 
     function handleUpdateEvent(e) {
         e.preventDefault();
         setUpdateEvent({ ...updateEventState, [e.target.name]: e.target.value })
-        // console.log(updateEventState)
+    
     }
+    
+
+
+    function updateEvent(e) {
+        e.preventDefault()
+        let formData = new FormData();
+        formData.append("name", name);
+        formData.append("address", address);
+        formData.append("date", date);
+        formData.append("time", time);
+        formData.append("description", description);
+        formData.append("image", imageState.image);
+        console.log(imageState.image)
+        console.log(formData)
+// //  updateEventState.image=imageState.image;
+//  console.log(updateEventState)
+        EVENT.updateEvent(show.updateEventInfo._id, formData).then(res => {
+            console.log(res.data)
+        })       
+        .then(window.location.replace("/Events"))         
+    }
+
+
 
     useEffect(()=>{
         setUpdateEvent(show.updateEventInfo)
@@ -62,7 +66,7 @@ function Events(){
         USER.myEvents(userState._id).then((res) => {
             const data = res.data[0]
             setmyEventsState(JSON.parse(JSON.stringify(data)).events)
-            // console.log(JSON.parse(JSON.stringify(data)).events)
+            
         })
 
     }, [userState])
@@ -70,7 +74,7 @@ function Events(){
 
     useEffect(() => {
         EVENT.findOrganizedEvent(userState._id).then((res) => {
-            setMyOrganizedState(res.data)
+          setMyOrganizedState(res.data)
             console.log("data organized ---------------")
             console.log(res.data)
         })
@@ -84,7 +88,7 @@ function Events(){
             setEventsState(res.data)
         })
             .then(
-                API.getUser().then((res) => {
+                AUTH.getUser().then((res) => {
                     // console.log("aut user")
                     // console.log(res.data)
                     setUserState({ username: res.data.username, _id: res.data._id })
@@ -94,7 +98,7 @@ function Events(){
     }, []);
 
     useEffect(() => {
-        API.getUser().then((response) => {
+        AUTH.getUser().then((response) => {
             if (response.data.username) {
                 setLoggedIn(true);
             } else {
@@ -107,11 +111,9 @@ function Events(){
     }, []);
 
 
-    
-
     function logOut(e) {
         e.preventDefault();
-        API.logout();
+        AUTH.logout();
         setLoggedIn(false)
     }
     function joinEvent(eventId) {
@@ -125,44 +127,105 @@ function Events(){
     function eventInfo(eventId) {
         EVENT.eventInfo(eventId).then(res => {
             console.log(res.data)
-            return(<p>{res.data}</p>)
         })
     }
 
-    function updateEvent(e) {
-        e.preventDefault()
 
-        EVENT.updateEvent(show.updateEventInfo._id, updateEventState).then(res => {
-            console.log(res.data)
-        })       
-        .then(window.location.replace("/Events"))         
+    function deleteEvent(id) {
+        EVENT.deleteEvent(id,userState._id )
+        .then(window.location.replace("/Events"))
+       console.log(id, userState._id )
+   }
 
-    }
-                <h1>All events</h1>
-                
-
-
-    return(
-        <Fragment>
-            { loggedIn &&
+    return (
+        <>
+            {loggedIn &&
                 <div>
-                    <Button variant="contained" className={classes.btnStyles} onClick={logOut}> log out </Button>
-                    <Button variant="contained" className={classes.btnStyles} href="/newEvent">Create Event</Button>
+                    <button onClick={logOut}> log out </button>
+                    <h3><Link to="/AddEvents">Add event</Link></h3>
 
-                        {/* <h1>All events</h1>
-                        <EventsTable events={eventsState} />
-                        <h1>{userState.username}'s events joined</h1>
-                        <JoinedEventsTable events={myEventsState} />
-                        <h1>{userState.username}'s events organized</h1>
-                        <CreatedEventsTable events={myOrganizedState} /> */}
+                    <h1>All events</h1>
+                    <ul>
+                        {eventsState.map(event => (
+                    
+                            <li key={event._id}><img src={event.image.url} alt={event.name} width="50" height="50"></img>{event.name} <button onClick={() => eventInfo(event._id)}>Event Info</button><button onClick={() => joinEvent(event._id)}>join event</button> </li>
 
-                        <SimpleTabs />
-                 
+
+                        ))}
+
+                    </ul>
+
+                    <h1> {userState.username}'s events joined</h1>
+
+                    <ul>
+                        {myEventsState.map(myEvent => (
+                            <li key={myEvent._id}><img src={myEvent.image.url} alt={myEvent.name} width="50" height="50"></img>   {myEvent.name} || {myEvent.address} || {myEvent.date}  <button onClick={() => leaveEvent(myEvent._id)}> Leave Event</button> </li>
+                        ))
+                        }
+                    </ul>
+
+
+                    <h1> {userState.username}'s events organized</h1>
+
+                    <ul>
+                        {myOrganizedState.map(myOrganizedEvent => (
+                            <li key={myOrganizedEvent._id}> <img src={myOrganizedEvent.image.url} alt={myOrganizedEvent.name} width="50" height="50"></img> {myOrganizedEvent.name} || {myOrganizedEvent.address} || {myOrganizedEvent.date}
+                            
+                            <button onClick={() => setShow({isVisible:true, updateEventInfo:myOrganizedEvent})}> update event</button> <button onClick={() => deleteEvent(myOrganizedEvent._id)} > Remove Event</button> </li>
+                        ))
+                        }
+                    </ul>
+
                 </div>
             }
-            { !loggedIn && <PlsLogin/> }
-        </Fragment>               
-    );
+            {!loggedIn &&
+                <div>
+                    <h1>please log in to see the events</h1>
+                    <h3><Link to="/SignUp">SignUp</Link></h3>
+                    <h3><Link to="/Login">Login</Link></h3>
+                    <h3><Link to="/AddEvents">Add event</Link></h3>
+                </div>
+
+            }
+
+            <Modal show={show.isVisible} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <h1>event id: </h1>
+
+                    <form action="/" >
+                        <label htmlFor="name">activity name :</label>
+                        <input type="text" id="name" name="name" placeholder="avtivity Name" value={name} onChange={handleUpdateEvent}></input>
+                        <label htmlFor="address">address:</label>
+                        <input type="text" id="address" name="address" placeholder="address" value={address} onChange={handleUpdateEvent}></input>
+                        <label htmlFor="date">date:</label>
+                        <input type="date" id="date" name="date" placeholder="date" value={date} onChange={handleUpdateEvent}></input>
+                        <label htmlFor="time">time:</label>
+                        <input type="time" id="time" name="time" placeholder="time" value={time} onChange={handleUpdateEvent}></input>
+                        <label htmlFor="description">description:</label>
+                        <input type="description" id="description" name="description" placeholder="description" value={description} onChange={handleUpdateEvent}></input>
+                        <input type="submit" value="Submit" onClick={updateEvent}></input>
+                        <input type="file" name="image" onChange={setImage} ></input>
+
+                    </form>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+          </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+          </Button>
+                </Modal.Footer>
+            </Modal>
+
+
+        </>
+
+    )
 }
 
-export default Events;
+export default Events

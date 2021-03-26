@@ -4,22 +4,37 @@ import EVENTS from '../utils/EVENT';
 
 const AddEvent = () => {
 
-
     const [newEventState, setNewEvent] = useState({});
     const { name, address, date,time,description } = newEventState;
 
+    const[imageState,SetImageState]=useState({})
 
+   const setImage = event => {
+        SetImageState({image: event.target.files[0]})
+    }
 
     function handleNewEvent(e) {
         e.preventDefault();
-        setNewEvent({ ...newEventState, [e.target.name]: e.target.value })
+
+        setNewEvent({ ...newEventState, [e.target.name]: e.target.value  })
+   
         console.log(newEventState)
+       
     }
+
+    let formData = new FormData();
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("date", date);
+    formData.append("time", time);
+    formData.append("description", description);
+    formData.append("image", imageState.image);
+
 
 
     function addNewEvent(e) {
         e.preventDefault();
-        EVENTS.addEvent(newEventState)
+        EVENTS.addEvent(formData)
         .then(window.location.replace("/Events")) ;
         setNewEvent({})
 
@@ -40,6 +55,7 @@ const AddEvent = () => {
                 <input type="time" id="time" name="time" placeholder="time" value={time} onChange={handleNewEvent}></input>
                 <label htmlFor="description">description:</label>
                 <input type="description" id="description" name="description" placeholder="description" value={description} onChange={handleNewEvent}></input>
+                <input type="file" name="image" onChange={setImage} ></input>
                 <input type="submit" value="Submit"></input>
 
             </form>

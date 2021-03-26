@@ -40,7 +40,18 @@ var EventSchema = new Schema({
     attendees: [{
         type: Schema.Types.ObjectId,
         ref: "User",
-    }]
+    }],
+    image: {
+        url: {
+            type: String,
+            required: false,
+            default: "http://res.cloudinary.com/dqbo8ib1r/image/upload/v1616723670/JoinUs/j6b3r4w99auhviobdxkr.jpg"
+        },
+        id: {
+            type: String,
+            required: false
+        }
+    }
 
 });
 

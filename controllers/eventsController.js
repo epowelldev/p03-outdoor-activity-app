@@ -1,5 +1,6 @@
 const db = require("../model");
 const Moment =require ("moment")
+const cloudinary = require("cloudinary");
 
 module.exports = {
     getAllEvents: (req, res) => {
@@ -28,6 +29,15 @@ module.exports = {
         const { name, address, date, time, description } = req.body
         let newEvent = {};
 
+        let image = {};
+
+        if (req.file) {
+            image.url = req.file.url;
+            image.id = req.file.public_id;
+        } else {
+            image =req.body.image;
+        }
+
         newEvent.name = name;
         newEvent.address = address;
         //  DATE is ENTERED AS "2020-02-04"
@@ -35,7 +45,7 @@ module.exports = {
         //  TIME IS ENTERED AS "14:00"
         newEvent.time = time;
         newEvent.description = description
-
+        newEvent.image = image;
         if (req.user) {
 
             // takes the organizer's username and finds its objectId 
@@ -105,7 +115,29 @@ module.exports = {
     },
     updateEvent: (req, res) => {
             db.Events.findById(req.params.id)
-                .then(event => {                                   
+                .then(event => {   
+                    const id = event.image.id;   
+                    let image = {};  
+                    console.log("console.log(req.file)-*************************")
+                    console.log(req.file)
+                    if (req.file) {
+                        console.log(req.file);
+                        image.url = req.file.url;
+                        image.id = req.file.public_id;
+                        // takes the old stored image id and deletes it from cloudinary storage
+                        if (id) {
+                            cloudinary.v2.uploader.destroy(id, (err, res) => {
+                                if (err) console.log(err);
+                                console.log("This is the response:" + res)
+                            });
+                        }
+                        // if no new image   current image object becomes new image
+                    } else {
+                        image = event.image;
+                        console.log(image);
+                    }
+
+
                     db.Events.findByIdAndUpdate(event._id,
                         {
                             $set: {
@@ -114,6 +146,7 @@ module.exports = {
                                 date: req.body.date,
                                 time: req.body.time,
                                 description: req.body.description,
+                                image : image
                                                            }
                         }, { new: true })
                         .then(updatedEvent => {
@@ -129,21 +162,47 @@ module.exports = {
         console.log(id,"-------")
         console.log(req.body.userId)
 
-        db.Events.findByIdAndDelete(id)
-            .then(db.User.findByIdAndUpdate(req.body.userId,
+
+        db.Events.findById(req.params.id)
+        .then(event => {  
+            const imageId = event.image.id
+            if (imageId) {
+                cloudinary.v2.uploader.destroy(imageId, (err, res) => {
+                    if (err) console.log(err);
+                 
+                });
+            }
+        })
+        
+           db.Events.findByIdAndDelete(id)
+            .then(    
+                 db.User.findByIdAndUpdate(req.body.userId,
                     { $pullAll: { events: [id] } })
                     .then(() => {
                         res.json(`${id} has been deleted`);
                     })
             )
+            .then(
+                db.Events.findById(req.params.id)
+                .then(event => {  
+                    const imageId = event.image.id
+                    if (imageId) {
+                        cloudinary.v2.uploader.destroy(id, (err, res) => {
+                            if (err) console.log(err);
+                         
+                        });
+                    }
+                })
+
+            )
             .catch(err => res.status(422).json(err));
+
+            
 
     }
 
 
-
-
-    
+ 
 
 
 
