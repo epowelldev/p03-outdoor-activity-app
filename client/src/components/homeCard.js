@@ -1,44 +1,44 @@
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 270,
-    // minHeight:"auto",
-    // height:"75vh",
     maxWidth:"75%",
     margin:"1%",
-    // backgroundColor:"#B39180",
-    color:"black",
-    // marginTop:"5%",
-    marginLeft:"4%",
-    fontSize: '2rem',
+    color:"white",
+    fontSize: "2.5em",
     fontWeight: 800,
   },
-  
-  title: {
-    fontSize: 14,
-  },
- 
- 
+  btnStyle:{
+    minWidth: 200,
+    transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+    background:"green",
+    margin:"1%",
+    '&:hover': {
+      background:"green",
+      transform: 'scale(1.1)',
+    },
+    borderRadius: 50,
+    color: "white",
+    textTransform: 'none',
+    fontSize: 15,
+    fontWeight: 700,
+    padding:9
+ }
 });
 
 export default function HomeCard() {
   const classes = useStyles();
-  
 
   return (
-    // <Card className={classes.root} >
-    //   <CardContent>
-        <Typography  className={classes.root} variant="h3"  >
+    <Box>
+        <Typography  className={classes.root} variant="h4"  >
           Explore the Outdoors with new Friends!
-          
         </Typography>
-    //   </CardContent>
-    // </Card>
+        <Button className={classes.btnStyle} href="/signup">Signup</Button>
+        <Button className={classes.btnStyle} href="/events">Events</Button>
+    </Box>
   );
 }

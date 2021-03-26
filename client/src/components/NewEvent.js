@@ -11,16 +11,18 @@ const useStyles = makeStyles({
       display:"flex",
       flexDirection:"column",
       width:"50%",
+      
       marginLeft:"27%",
       marginTop:"10%",
       backgroundColor:"#5C6D37",
       color:"white",
       borderRadius:"25px",
       paddingTop:"7%",
-      opacity:".90"
+      opacity:".90",
+      flexBasis:"content"
     },
     inputStyles:{
-      margin:"30px",
+      margin:"5%",
       color:"black",
       backgroundColor:"white"
     },
@@ -90,6 +92,7 @@ function NewEvent(){
             <Input placeholder="Time" ref={time}  name="time"  className={classes.inputStyles} inputProps={{ 'aria-label': 'time' }} /> */}
             <Input placeholder="Event Date and Time"  name="datetimeInput"  onChange={handleChange}  className={classes.inputStyles}  type="datetime-local" />
             <Input placeholder="description"  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
+            {/* upload image */}
             <Button onClick={handleSubmit} variant="contained"  className={classes.inputStyles} color="primary">
                 Create Event
             </Button>
