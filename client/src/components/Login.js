@@ -33,8 +33,29 @@ const useSStyles=makeStyles({
   },
   title:{
     fontFamily:"Sans-serif",
-    marginLeft:"30%"
-  }
+    // marginLeft:"30%"
+    textAlign:"center"
+  },
+  submitBtn:{
+    
+      minWidth: 90,
+      width:100,
+      alignSelf:"center",
+      transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+      background:"white",
+      margin:"5%",
+      '&:hover': {
+        background:"white",
+        transform: 'scale(1.1)',
+      },
+      borderRadius: 50,
+      color: "black",
+      textTransform: 'none',
+      fontSize: 15,
+      fontWeight: 700,
+      padding:9
+   }
+  
  
 });
 
@@ -87,7 +108,7 @@ if(loggedIn){
           <h2 className={classes.title}>Join us Outside</h2>
           <Input placeholder="UserName" className={classes.inputStyles} name="username" value={username} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
           <Input placeholder="Password" className={classes.inputStyles} type="password" name="password" value={password} onChange={handleChange} inputProps={{ 'aria-label': 'description' }} />
-          <Button variant="contained" className={classes.inputStyles} color="primary" onClick={handleSubmit}>
+          <Button variant="contained" className={classes.submitBtn} color="primary" onClick={handleSubmit}>
               Login
           </Button>
           <p className={classes.altBtn}>Don't have an account?<Button href="/signup" color="primary">Signup</Button></p>
