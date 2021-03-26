@@ -199,7 +199,7 @@ export default function SimpleTabs() {
         <Button variant="text" color="inherit" className={classes.btnStyles} href="/newEvent">Create Event</Button>
         </div>
       </AppBar>
-      <div className={classes.tabPanelsOut}>
+      <div className={classes.tabPanels}>
         <div className={classes.tabPanelsInner}>
           <TabPanel value={value} index={0}> 
             <EventsTable events={eventsState} />

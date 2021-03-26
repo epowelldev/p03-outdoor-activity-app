@@ -15,7 +15,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import SimpleTabs from "../components/layout/SimpleTabs";
+import SimpleTabs from "./layout/SimpleTabs";
 
 
 const useSStyles=makeStyles({
