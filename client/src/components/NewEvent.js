@@ -1,7 +1,6 @@
-import {Button, Input, Box, TextField} from '@material-ui/core';
+import {Button, Input, Box} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import API from "../utils/API";
-import React,  { useState, useRef, Fragment, } from 'react'
+import React,  { useState, Fragment, } from 'react'
 import EVENT from "../utils/EVENT"
 import Navbar from './layout/Navbar';
 
@@ -44,9 +43,28 @@ const useStyles = makeStyles({
   },
   title:{
     fontFamily:"Sans-serif",
-    marginLeft:"30%",
+    textAlign:"center",
     marginBottom:"10%"
-  }
+  },
+  submitBtn:{
+    
+    minWidth: 150,
+    width:200,
+    alignSelf:"center",
+    transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+    background:"white",
+    margin:"5%",
+    '&:hover': {
+      background:"white",
+      transform: 'scale(1.1)',
+    },
+    borderRadius: 50,
+    color: "black",
+    textTransform: 'none',
+    fontSize: 15,
+    fontWeight: 700,
+    padding:9
+ }
     
   });
 
@@ -93,7 +111,7 @@ function NewEvent(){
             <Input placeholder="Event Date and Time"  name="datetimeInput"  onChange={handleChange}  className={classes.inputStyles}  type="datetime-local" />
             <Input placeholder="description"  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
             {/* upload image */}
-            <Button onClick={handleSubmit} variant="contained"  className={classes.inputStyles} color="primary">
+            <Button onClick={handleSubmit} variant="contained"  className={classes.submitBtn} color="primary">
                 Create Event
             </Button>
             </Box>

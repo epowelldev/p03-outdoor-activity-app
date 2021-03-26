@@ -29,9 +29,28 @@ const useStyles=makeStyles({
       },
       title:{
         fontFamily:"Sans-serif",
-        marginLeft:"39%",
+        textAlign:"center",
         marginBottom:"5%"
-      }
+      },
+      submitBtn:{
+    
+        minWidth: 150,
+        width:200,
+        alignSelf:"center",
+        transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+        background:"white",
+        margin:"5%",
+        '&:hover': {
+          background:"white",
+          transform: 'scale(1.1)',
+        },
+        borderRadius: 50,
+        color: "black",
+        textTransform: 'none',
+        fontSize: 15,
+        fontWeight: 700,
+        padding:9
+     }
   });
 
 
@@ -79,7 +98,7 @@ function Signup(){
         
         <Input placeholder="Email" name="email" value={email} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
        
-        <Button variant="contained"  className={classes.inputStyles} color="primary" onClick={handleSubmit}>
+        <Button variant="contained"  className={classes.submitBtn} color="primary" onClick={handleSubmit}>
             Create Account
         </Button>
        <p className={classes.altBtn} >Already have an account?<Button href="/login" color="primary">Login</Button></p>

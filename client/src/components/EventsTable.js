@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
       btnStyle:{
         position:"absolute",
         bottom:"0",
-        right:"12",
+        right:"40%",
         minWidth: 200,
         transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
         background:"brown",
