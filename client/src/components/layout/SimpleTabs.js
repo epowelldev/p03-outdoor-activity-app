@@ -14,6 +14,7 @@ import CreatedEventsTable from "../CreatedEventsTabe";
 import API from "../../utils/API";
 import EVENT from "../../utils/EVENT"
 import USER from "../../utils/USER"
+import { Button } from "@material-ui/core";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,6 +53,20 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+  },
+  rowBar: {
+    backgroundColor: "#5C6D37",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  tabPanelsOut: {
+    width: "100%",
+    display: "block",
+  },
+  tabPanelsInner: {
+    width: "95%",
+    margin: "auto",
   },
 }));
 
@@ -175,21 +190,28 @@ export default function SimpleTabs() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
+        <div className={classes.rowBar}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="All Events" {...a11yProps(0)} />
           <Tab label="Joined Events" {...a11yProps(1)} />
           <Tab label="Organized Events" {...a11yProps(2)} />
         </Tabs>
+        <Button variant="text" color="inherit" className={classes.btnStyles} href="/newEvent">Create Event</Button>
+        </div>
       </AppBar>
-      <TabPanel value={value} index={0}> 
-        <EventsTable events={eventsState} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <JoinedEventsTable events={myEventsState} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <CreatedEventsTable events={myOrganizedState} />
-      </TabPanel>
+      <div className={classes.tabPanels}>
+        <div className={classes.tabPanelsInner}>
+          <TabPanel value={value} index={0}> 
+            <EventsTable events={eventsState} />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <JoinedEventsTable events={myEventsState} />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <CreatedEventsTable events={myOrganizedState} />
+          </TabPanel>
+        </div>
+      </div>
     </div>
   );
 }

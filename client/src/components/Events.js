@@ -15,7 +15,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import SimpleTabs from "../components/layout/SimpleTabs";
+import SimpleTabs from "./layout/SimpleTabs";
 
 
 const useSStyles=makeStyles({
@@ -136,29 +136,14 @@ function Events(){
             console.log(res.data)
         })       
         .then(window.location.replace("/Events"))         
-
     }
-                <h1>All events</h1>
-                
-
 
     return(
         <Fragment>
             { loggedIn &&
-                <div>
-                    <Button variant="contained" className={classes.btnStyles} onClick={logOut}> log out </Button>
-                    <Button variant="contained" className={classes.btnStyles} href="/newEvent">Create Event</Button>
-
-                        {/* <h1>All events</h1>
-                        <EventsTable events={eventsState} />
-                        <h1>{userState.username}'s events joined</h1>
-                        <JoinedEventsTable events={myEventsState} />
-                        <h1>{userState.username}'s events organized</h1>
-                        <CreatedEventsTable events={myOrganizedState} /> */}
-
-                        <SimpleTabs />
-                 
-                </div>
+                <Fragment>
+                    <SimpleTabs />
+                </Fragment>
             }
             { !loggedIn && <PlsLogin/> }
         </Fragment>               
