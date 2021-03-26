@@ -1,9 +1,12 @@
-import { Button, makeStyles } from "@material-ui/core";
+import { Box, Button, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
-
+import PlsPic from "../assets/homePic.jpg"
 
 const useSStyles=makeStyles({
     boxStyle:{
+        backgroundImage:`url(${PlsPic})`,
+        backgroundSize:"cover",
+        backgroundPosition:"center",
         display:"flex",
         flexDirection:"column",
         backgroundColor:"#5C6D37",
@@ -16,24 +19,34 @@ const useSStyles=makeStyles({
         justifyContent:"space-around",
         alignItems:"center"
     },
-    buttonStyle:{
-        width:"20px",
-        backgroundColor:"#B39180",
-        color:"white",
-        margin:"2%"
-    }
+    btnStyle:{
+        minWidth: 200,
+        transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+        background:"#5C6D37",
+        margin:"1%",
+        '&:hover': {
+          background:"#5C6D37",
+          transform: 'scale(1.1)',
+        },
+        borderRadius: 50,
+        color: "white",
+        textTransform: 'none',
+        fontSize: 15,
+        fontWeight: 700,
+        padding:9
+     }
 })
 function PlsLogin(){
     const classes = useSStyles();
 return(
-    <div className={classes.boxStyle}>
+    <Box className={classes.boxStyle}>
         <h1>Please Login or Create an account to post or join events!</h1>
-        <div stlye={{display:"flex"}}>
-        <Button variant="outlined" className={classes.buttonStyle} href="/Login">Login</Button>
-        <Button variant="outlined" className={classes.buttonStyle} href="/Signup">Signup</Button>
-        </div>
+        
+        <Button variant="outlined" className={classes.btnStyle} href="/Login">Login</Button>
+        <Button variant="outlined" className={classes.btnStyle} href="/Signup">Signup</Button>
+       
         <h3>Join the Community</h3>
-    </div>
+    </Box>
 );
 }
 

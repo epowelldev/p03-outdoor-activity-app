@@ -14,10 +14,10 @@ const useStyles = makeStyles({
   btnStyle:{
     minWidth: 200,
     transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-    background:"green",
+    background:"#5C6D37",
     margin:"1%",
     '&:hover': {
-      background:"green",
+      background:"#5C6D37",
       transform: 'scale(1.1)',
     },
     borderRadius: 50,

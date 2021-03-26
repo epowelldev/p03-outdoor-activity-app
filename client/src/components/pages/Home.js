@@ -2,11 +2,8 @@
 import { Fragment } from "react";
 import Navbar from "../layout/Navbar";
 import { makeStyles } from '@material-ui/core/styles';
-import HomePic from "../../assets/homePic.jpg"
-import { Box, Paper } from "@material-ui/core";
+import { Box} from "@material-ui/core";
 import HomeCard from "../homeCard";
-import HomeSignupCard from "../HomeSignupCard";
-import HomeEventsCard from "../HomeEventsCard";
 import HomePagePic from "../../assets/homePagePic.jpg"
 const useStyles=makeStyles({
   contentStyle:{
