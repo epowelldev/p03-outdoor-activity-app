@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 
 const Events = () => {
+
     const [show, setShow] = useState({isVisible:false, updateEventInfo:"" });
     const handleClose = () => setShow({isVisible:false, updateEventInfo:"" });
 
@@ -18,15 +19,41 @@ const Events = () => {
     const [userState, setUserState] = useState({ username: "", _id: "" })
 
 
+
     const [updateEventState, setUpdateEvent] = useState({});
     const { name, address, date, time, description } = updateEventState;
-
+    
+    const[imageState,SetImageState]=useState({})
+    const setImage = event => {
+        SetImageState({image: event.target.files[0]})
+    }
 
     function handleUpdateEvent(e) {
         e.preventDefault();
         setUpdateEvent({ ...updateEventState, [e.target.name]: e.target.value })
-     
+    
     }
+    
+    function updateEvent(e) {
+        e.preventDefault()
+        let formData = new FormData();
+        formData.append("name", name);
+        formData.append("address", address);
+        formData.append("date", date);
+        formData.append("time", time);
+        formData.append("description", description);
+        formData.append("image", imageState.image);
+        console.log(imageState.image)
+        console.log(formData)
+// //  updateEventState.image=imageState.image;
+//  console.log(updateEventState)
+        EVENT.updateEvent(show.updateEventInfo._id, formData).then(res => {
+            console.log(res.data)
+        })       
+        .then(window.location.replace("/Events"))         
+    }
+
+
 
     useEffect(()=>{
         setUpdateEvent(show.updateEventInfo)
@@ -38,7 +65,7 @@ const Events = () => {
         USER.myEvents(userState._id).then((res) => {
             const data = res.data[0]
             setmyEventsState(JSON.parse(JSON.stringify(data)).events)
-            // console.log(JSON.parse(JSON.stringify(data)).events)
+            
         })
 
     }, [userState])
@@ -100,15 +127,6 @@ const Events = () => {
         EVENT.eventInfo(eventId).then(res => {
             console.log(res.data)
         })
-    }
-
-    function updateEvent(e) {
-        e.preventDefault()
-
-        EVENT.updateEvent(show.updateEventInfo._id, updateEventState).then(res => {
-            console.log(res.data)
-        })       
-        .then(window.location.replace("/Events"))         
     }
 
 
@@ -188,6 +206,7 @@ const Events = () => {
                         <label htmlFor="description">description:</label>
                         <input type="description" id="description" name="description" placeholder="description" value={description} onChange={handleUpdateEvent}></input>
                         <input type="submit" value="Submit" onClick={updateEvent}></input>
+                        <input type="file" name="image" onChange={setImage} ></input>
 
                     </form>
 
