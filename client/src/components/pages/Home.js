@@ -52,16 +52,8 @@ export default () => {
 
   return(
     <Fragment>
-     
       <Box className={classes.bg}>
-
-      
-
-        <div className={classes.HeaderStyle}>
-          <Navbar/>
-          <h1>Join Us Outside</h1>
-        </div>
-
+        <Navbar/>
         <Box className={classes.contentStyle}>
           <HomeCard />
           <div style={{display:"flex",flexDirection:"row",marginTop:"1%",}}>
@@ -69,10 +61,7 @@ export default () => {
           <HomeEventsCard/>
           </div>
         </Box>
-      
       </Box>
-      
     </Fragment>
-    
   );
 }
