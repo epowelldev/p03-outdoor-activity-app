@@ -1,2 +1,1 @@
-web npm run start
-web npm run client
+web npm run build
