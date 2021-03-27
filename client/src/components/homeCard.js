@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Box, Link } from '@material-ui/core';
+import { Box } from '@material-ui/core';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {

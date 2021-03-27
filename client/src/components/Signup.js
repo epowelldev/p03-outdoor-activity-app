@@ -2,7 +2,7 @@ import {Button, Input, Box} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import API from "../utils/API";
 import React,  { useState } from 'react'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 const useStyles=makeStyles({
@@ -101,7 +101,7 @@ function Signup(){
         <Button variant="contained"  className={classes.submitBtn} color="primary" onClick={handleSubmit}>
             Create Account
         </Button>
-       <p className={classes.altBtn} >Already have an account?<Button href="/login" color="primary">Login</Button></p>
+       <p className={classes.altBtn} >Already have an account?<Button component={Link} to="/login" color="primary">Login</Button></p>
         </Box>
       </form>
       
