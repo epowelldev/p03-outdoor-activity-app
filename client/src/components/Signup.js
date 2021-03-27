@@ -2,7 +2,7 @@ import {Button, Input, Box} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import API from "../utils/API";
 import React,  { useState } from 'react'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 const useStyles=makeStyles({
@@ -94,14 +94,14 @@ function Signup(){
        
         <Input placeholder="UserName" name="username" value={username} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
         
-        <Input placeholder="Password" name="password" value={password} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
+        <Input placeholder="Password" name="password" type="password" value={password} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
         
         <Input placeholder="Email" name="email" value={email} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
        
         <Button variant="contained"  className={classes.submitBtn} color="primary" onClick={handleSubmit}>
             Create Account
         </Button>
-       <p className={classes.altBtn} >Already have an account?<Button href="/login" color="primary">Login</Button></p>
+       <p className={classes.altBtn} >Already have an account?<Button component={Link} to="/login" color="primary">Login</Button></p>
         </Box>
       </form>
       
