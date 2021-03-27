@@ -4,6 +4,8 @@ import API from "../utils/API"
 import { useEffect, useState } from 'react';
 import { Redirect } from "react-router-dom";
 import LoginPic from "../assets/loginPic.jpeg";
+import { Link } from "react-router-dom";
+
 
 const useSStyles=makeStyles({
   root:{
@@ -111,7 +113,7 @@ if(loggedIn){
           <Button variant="contained" className={classes.submitBtn} color="primary" onClick={handleSubmit}>
               Login
           </Button>
-          <p className={classes.altBtn}>Don't have an account?<Button href="/signup" color="primary">Signup</Button></p>
+          <p className={classes.altBtn}>Don't have an account?<Button component={Link} to="/signup" color="primary">Signup</Button></p>
 
         </Box>
 
