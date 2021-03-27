@@ -208,7 +208,7 @@ export default function SimpleTabs() {
             <JoinedEventsTable events={myEventsState} />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <CreatedEventsTable events={myOrganizedState} />
+            <CreatedEventsTable events={myOrganizedState} userState={userState}/>
           </TabPanel>
         </div>
       </div>

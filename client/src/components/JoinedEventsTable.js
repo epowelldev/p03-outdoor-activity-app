@@ -9,26 +9,64 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import EVENT from "../utils/EVENT"
-import { Modal, Button } from "@material-ui/core";
+import { Modal, Button, Box } from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      top:'50',
-      left:'50'
+  paper: {
+    position: 'fixed',
+    width: "70%",
+    height:"70%",
+    backgroundColor: "#5C6D37",
+    border: '2px solid black',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    top:100,
+    left:145,
+    color:"white"
+  },
+  Mtitle:{
+    fontSize:"4em",
+    textAlign:"center",
+    fontStyle:"bold"
+  },
+  DTstyle:{
+    fontSize:"1.5em",
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around"
+  },
+  descStyle:{
+    fontSize:"2em",
+    textAlign:"center",
+    margin:"2%",
+    marginTop:"8%"
+  },
+  root: {
+      width: '90%',
     },
-    root: {
-        width: '90%',
+    container: {
+      maxHeight: 440,
+    },
+    btnStyle:{
+      position:"absolute",
+      bottom:"0",
+      right:"40%",
+      minWidth: 200,
+      transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+      background:"white",
+      margin:"1%",
+      '&:hover': {
+        background:"white",
+        transform: 'scale(1.1)',
       },
-      container: {
-        maxHeight: 440,
-      },
+      borderRadius: 50,
+      color: "black",
+      textTransform: 'none',
+      fontSize: 15,
+      fontWeight: 700,
+      padding:9
+   }
   }));
   const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
@@ -130,20 +168,24 @@ const handleChangeRowsPerPage = (event) => {
       />
       <Modal open={open}
         onClose={handleClose}>
-            <div  className={classes.paper}>
-    <h2 id="simple-modal-title">{currentEvent.name}</h2>
-    <p id="simple-modal-description">
-      {currentEvent.address}
-    </p>
-    <p id="simple-modal-description">
-      {currentEvent.date}
-    </p>
-    <p id="simple-modal-description">
-      {currentEvent.description}
-    </p>
-    <button onClick={() => leaveEvent(currentEvent._id)}>Leave event</button>
+            <Box  className={classes.paper}>
+            <h2 className={classes.Mtitle}>{currentEvent.name}</h2>
+          <div className={classes.DTstyle}>
+            <p>
+              {currentEvent.address}
+            </p>
+            <p>
+              {currentEvent.date}
+            </p>
+          </div>
+          <div className={classes.descStyle}>
+            <p>
+              {currentEvent.description}
+            </p>
+          </div>
+    <Button  className={classes.btnStyle} onClick={() => leaveEvent(currentEvent._id)}>Leave event</Button>
     
-  </div>
+  </Box>
       </Modal>
     </Paper>
 

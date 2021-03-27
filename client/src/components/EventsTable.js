@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
       flexDirection:"row",
       justifyContent:"space-around"
     },
+    ImageStyle:{
+        objectFit:"cover"
+    },
     descStyle:{
       fontSize:"2em",
       textAlign:"center",
@@ -65,14 +68,14 @@ const useStyles = makeStyles((theme) => ({
         right:"40%",
         minWidth: 200,
         transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-        background:"brown",
+        background:"white",
         margin:"1%",
         '&:hover': {
-          background:"brown",
+          background:"white",
           transform: 'scale(1.1)',
         },
         borderRadius: 50,
-        color: "white",
+        color: "black",
         textTransform: 'none',
         fontSize: 15,
         fontWeight: 700,
@@ -192,8 +195,11 @@ export default function EventsTable({events}) {
               {currentEvent.description}
             </p>
           </div>
+      
+            {/* <img className={classes.ImageStyle} src={currentEvent.image.url} alt="event"/> */}
+            
           <Button className={classes.btnStyle} onClick={() => joinEvent(currentEvent._id)}>join event</Button>
-    
+         
         </Box>
       </Modal>
     </Paper>
