@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Box } from '@material-ui/core';
+import { Box, Link } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -37,8 +37,8 @@ export default function HomeCard() {
         <Typography  className={classes.root} variant="h4"  >
           Explore the Outdoors with new Friends!
         </Typography>
-        <Button className={classes.btnStyle} href="/signup">Signup</Button>
-        <Button className={classes.btnStyle} href="/events">Events</Button>
+        <Button className={classes.btnStyle} component={Link} to="/Signup">Signup</Button>
+        <Button className={classes.btnStyle} component={Link} to="/Events">Events</Button>
     </Box>
   );
 }
