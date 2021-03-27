@@ -106,9 +106,9 @@ export default function SimpleTabs() {
   useEffect(() => {
       USER.myEvents(userState._id).then((res) => {
           const data = res.data[0]
-          setmyEventsState(JSON.parse(JSON.stringify(data)).events)
+          setmyEventsState(data.events)
           // console.log(JSON.parse(JSON.stringify(data)).events)
-      })
+      }).catch((err) => {console.log("BIG BAD ERRORZ: ", err)});
 
   }, [userState])
 
