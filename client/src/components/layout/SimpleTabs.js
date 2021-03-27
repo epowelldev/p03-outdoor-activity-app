@@ -7,6 +7,8 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
+import { Link } from "react-router-dom";
+
 import EventsTable from "../EventsTable";
 import JoinedEventsTable from "../JoinedEventsTable";
 import CreatedEventsTable from "../CreatedEventsTabe";
@@ -196,7 +198,7 @@ export default function SimpleTabs() {
           <Tab label="Joined Events" {...a11yProps(1)} />
           <Tab label="Organized Events" {...a11yProps(2)} />
         </Tabs>
-        <Button variant="text" color="inherit" className={classes.btnStyles} href="/newEvent">Create Event</Button>
+        <Button variant="text" color="inherit" className={classes.btnStyles} component={Link} to="/newEvent">Create Event</Button>
         </div>
       </AppBar>
       <div className={classes.tabPanels}>
