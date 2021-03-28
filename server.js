@@ -10,12 +10,15 @@ const PORT = process.env.PORT || 3001;
 
 
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/join-us";
-mongoose.connect(
-  MONGODB_URI,
-  { useNewUrlParser: true },
-  console.log("Connected to MongoDB!")
-);
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/join-us";
+mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/join-us", 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+).catch((err) => console.log("MONGODB ERRORZ: ", err));
 
 
 app.use(morgan("dev"));

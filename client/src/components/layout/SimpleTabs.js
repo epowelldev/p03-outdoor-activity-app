@@ -107,7 +107,7 @@ export default function SimpleTabs() {
     if(userState._id){
       USER.myEvents(userState._id).then((res) => {
           const data = res.data[0]
-          setmyEventsState(JSON.parse(JSON.stringify(data)).events)
+          setmyEventsState(data.events)
           // console.log(JSON.parse(JSON.stringify(data)).events)
       })
     }
