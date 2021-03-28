@@ -200,14 +200,15 @@ export default function SimpleTabs() {
           <Tab label="Joined Events" {...a11yProps(1)} />
           <Tab label="Organized Events" {...a11yProps(2)} />
         </Tabs>
-        <Button variant="text" color="inherit" className={classes.btnStyles} component={Link} to="/newEvent">Create Event</Button>
-        </div>
+        <Button variant="text" color="inherit" className={classes.btnStyles} component={Link} to="/newEvent">{loggedIn && "Organize Event"}</Button>
+        </div> 
       </AppBar>
       <div className={classes.tabPanels}>
         <div className={classes.tabPanelsInner}>
           <TabPanel value={value} index={0}> 
             <EventsTable events={eventsState} />
           </TabPanel>
+          
           <TabPanel value={value} index={1}>
             <JoinedEventsTable events={myEventsState} />
           </TabPanel>

@@ -42,8 +42,8 @@ return(
     <Box className={classes.boxStyle}>
         <h1>Please Login or Create an account to post or join events!</h1>
         
-        <Button component={Link} variant="outlined" className={classes.btnStyle} to="/Login">Login</Button>
-        <Button component={Link} variant="outlined" className={classes.btnStyle} to="/Signup">Signup</Button>
+        <Button variant="outlined" className={classes.btnStyle} href="/Login">Login</Button>
+        <Button variant="outlined" className={classes.btnStyle} href="/Signup">Signup</Button>
        
         <h3>Join the Community</h3>
     </Box>

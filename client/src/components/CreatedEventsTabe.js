@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -10,7 +10,12 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import EVENT from "../utils/EVENT"
 import { Modal, Button, Box, Input } from "@material-ui/core";
-import UpdateEvent from './pages/UpdateEvent';
+import UpdateContext from "../updateContext/update/updateContext";
+import { useHistory } from "react-router-dom"
+
+
+
+
 
 import newEventPic from "../assets/newEventPic.jpg";
 const useStyles = makeStyles((theme) => ({
@@ -167,6 +172,9 @@ submitBtn:{
 
 
 function CreatedEventsTable({events,userState}){
+  let history = useHistory()
+  const updateContext = useContext(UpdateContext);
+
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -220,25 +228,19 @@ const handleChangeRowsPerPage = (event) => {
     setPage(0);
   };
 
-//   function updateEvent(e) {
-//     e.preventDefault()
-//     const dateTime=eventState.datetimeInput.split("T");
-//     const date=dateTime[0]
-//     const time=dateTime[1]
-//     const image =imageState.image
-//     setEventState({ name, address, description, date,time,image })
-//     EVENT.updateEvent(currentEvent._id, { name, address, description, date,time,image }).then(res => {
-//         console.log(res.data)
-//     })       
-//     .then(()=>{setUpdateVis(false)
-//         })        
-// }
 
 function deleteEvent(id) {
   EVENT.deleteEvent(id,userState._id )
   .then(window.location.replace("/Events"))
  console.log(id, userState._id )
 }
+
+const handleUpdate=()=>{
+
+  updateContext.update(currentEvent)
+  history.push("/update");
+ }
+
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -306,10 +308,11 @@ function deleteEvent(id) {
               : <p>no picture</p>
               }
               </div>
-    {/* <Button className={classes.dualBtn} >Update event</Button> */}
+    <Button className={classes.dualBtn} onClick={handleUpdate} >Update event</Button>
     <Button className={classes.btnStyle} onClick={()=>deleteEvent(currentEvent._id)}>Delete event</Button>
   </Box>
       </Modal>
+   
     </Paper>
 
   );
