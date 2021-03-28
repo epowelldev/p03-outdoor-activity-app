@@ -47,6 +47,7 @@ function logOut(e) {
   e.preventDefault();
   API.logout();
   setLoggedIn(false);
+  window.location.replace("/");
 }
 
   return (
