@@ -76,21 +76,34 @@ function NewEvent(){
     const[imageState,SetImageState]=useState({})
 
     const setImage = event => {
+      
          SetImageState({image: event.target.files[0]})
+         console.log(imageState)
      }
 
 
     function handleSubmit(e) {
         e.preventDefault()
+        
         const dateTime=eventState.datetimeInput.split("T");
         const date=dateTime[0]
         const time=dateTime[1]
-        const image =imageState.image
+        const image = imageState
         setEventState({ name, address, description, date,time,image })
+        let formData = new FormData();
+    formData.append("name", name);
+    formData.append("address", address);
+    formData.append("date", date);
+    formData.append("time", time);
+    formData.append("description", description);
+    formData.append("image", imageState.image);
+
         console.log( name, address, description, date,time)
-        EVENT.addEvent({ name, address, description, date,time,image }).then((res) => {
+
+        EVENT.addEvent(formData).then((res) => {
             console.log(res.data)
-            setEventState({ name: '', address: '' ,description:'' })
+            setEventState({})
+            SetImageState({})
             window.location.href="/events"
         })
        

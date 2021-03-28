@@ -25,6 +25,14 @@ const useStyles = makeStyles((theme) => ({
     left:145,
     color:"white"
   },
+  ImgBoxStle:{
+    width:"30%",
+    height:"30%",
+    marginLeft:"35%"
+  },
+  ImageStyle:{
+    objectFit:"cover"
+},
   Mtitle:{
     fontSize:"4em",
     textAlign:"center",
@@ -84,10 +92,7 @@ function JoinedEventsTable({events}){
   const [open, setOpen] = React.useState(false);
   const[currentEvent,setCurrentEvent]=React.useState({});
 
-  const handleOpen = () => {
-    setOpen(true);
-    
-  };
+  
 
   const handleClose = () => {
     setOpen(false);
@@ -183,6 +188,12 @@ const handleChangeRowsPerPage = (event) => {
               {currentEvent.description}
             </p>
           </div>
+          <div className={classes.ImgBoxStle}>
+            {currentEvent.image ?
+            <img className={classes.ImageStyle} src={currentEvent.image.url} alt="event"/>
+              : <p>no picture</p>
+              }
+              </div>
     <Button  className={classes.btnStyle} onClick={() => leaveEvent(currentEvent._id)}>Leave event</Button>
     
   </Box>

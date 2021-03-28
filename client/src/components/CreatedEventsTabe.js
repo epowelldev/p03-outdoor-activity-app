@@ -43,6 +43,14 @@ const useStyles = makeStyles((theme) => ({
     margin:"2%",
     marginTop:"8%"
   },
+  ImgBoxStle:{
+    width:"30%",
+    height:"30%",
+    marginLeft:"35%"
+  },
+  ImageStyle:{
+    objectFit:"cover"
+},
   formStyles:{
     display:"flex",
     flexDirection:"column",
@@ -293,7 +301,12 @@ function deleteEvent(id) {
               {currentEvent.description}
             </p>
           </div>
-    
+          <div className={classes.ImgBoxStle}>
+            {currentEvent.image ?
+            <img className={classes.ImageStyle} src={currentEvent.image.url} alt="event"/>
+              : <p>no picture</p>
+              }
+              </div>
     <Button className={classes.dualBtn} >Update event</Button>
     <Button className={classes.btnStyle} onClick={()=>deleteEvent(currentEvent._id)}>Delete event</Button>
   </Box>
