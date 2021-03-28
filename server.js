@@ -10,10 +10,8 @@ const PORT = process.env.PORT || 3001;
 
 
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/join-us";
-mongoose.connect(
-  process.env.MONGODB_URI || 
-  "mongodb://localhost/workout", 
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/join-us";
+mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/join-us", 
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
