@@ -15,15 +15,16 @@ import UpdateEvent from './pages/UpdateEvent';
 import newEventPic from "../assets/newEventPic.jpg";
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'fixed',
+    position: 'absolute',
     width: "70%",
     height:"70%",
     backgroundColor: "#5C6D37",
     border: '2px solid black',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    top:100,
-    left:145,
+    top:"10%",
+      left:"10%",
+      margin:"auto",
     color:"white"
   },
   Mtitle:{
@@ -119,9 +120,10 @@ submitBtn:{
     },
     btnStyle:{
       position:"absolute",
-      bottom:"0",
-      right:"25%",
-      minWidth: 200,
+        bottom:"0",
+        right:"40%",
+        minWidth: 100,
+        width:"20%",
       transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
       background:"white",
       margin:"1%",
@@ -307,7 +309,7 @@ function deleteEvent(id) {
               : <p>no picture</p>
               }
               </div>
-    <Button className={classes.dualBtn} >Update event</Button>
+    {/* <Button className={classes.dualBtn} >Update event</Button> */}
     <Button className={classes.btnStyle} onClick={()=>deleteEvent(currentEvent._id)}>Delete event</Button>
   </Box>
       </Modal>

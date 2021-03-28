@@ -14,15 +14,16 @@ import { Modal, Button, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'fixed',
+    position: 'absolute',
     width: "70%",
     height:"70%",
     backgroundColor: "#5C6D37",
     border: '2px solid black',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    top:100,
-    left:145,
+    top:"10%",
+      left:"10%",
+      margin:"auto",
     color:"white"
   },
   ImgBoxStle:{
@@ -60,7 +61,8 @@ const useStyles = makeStyles((theme) => ({
       position:"absolute",
       bottom:"0",
       right:"40%",
-      minWidth: 200,
+      minWidth: 100,
+      width:"20%",
       transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
       background:"white",
       margin:"1%",
