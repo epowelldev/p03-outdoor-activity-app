@@ -206,7 +206,7 @@ export default function SimpleTabs() {
       <div className={classes.tabPanels}>
         <div className={classes.tabPanelsInner}>
           <TabPanel value={value} index={0}> 
-            <EventsTable events={eventsState} />
+            <EventsTable events={eventsState} loggedIn={loggedIn}/>
           </TabPanel>
           
           <TabPanel value={value} index={1}>

@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function EventsTable({events}) {
+export default function EventsTable({events, loggedIn}) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -207,8 +207,9 @@ export default function EventsTable({events}) {
               : <p>no picture</p>
               }
               </div>
+          { loggedIn &&
           <Button className={classes.btnStyle} onClick={() => joinEvent(currentEvent._id)}>join event</Button>
-         
+          }
         </Box>
       </Modal>
     </Paper>
