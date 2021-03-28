@@ -12,9 +12,14 @@ const PORT = process.env.PORT || 3001;
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/join-us";
 mongoose.connect(
-  MONGODB_URI,
-  { useNewUrlParser: true },
-  console.log("Connected to MongoDB!")
+  process.env.MONGODB_URI || 
+  "mongodb://localhost/workout", 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
 );
 
 
