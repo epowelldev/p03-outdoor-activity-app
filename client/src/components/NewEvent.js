@@ -10,19 +10,22 @@ const useStyles = makeStyles({
       display:"flex",
       flexDirection:"column",
       width:"50%",
-      
-      marginLeft:"27%",
+      height:"80vh",
+      justifyContent:"space-around",
+      marginLeft:"24%",
       marginTop:"10%",
       backgroundColor:"#5C6D37",
       color:"white",
       borderRadius:"25px",
-      paddingTop:"7%",
+      // paddingTop:"7%",
       opacity:".90",
       flexBasis:"content"
     },
     inputStyles:{
-      margin:"5%",
+      // margin:"5%",
       color:"black",
+      width:"75%",
+      alignSelf:"center",
       backgroundColor:"white"
     },
     ImgStyle:{
@@ -44,11 +47,11 @@ const useStyles = makeStyles({
   title:{
     fontFamily:"Sans-serif",
     textAlign:"center",
-    marginBottom:"10%"
+    // marginBottom:"10%"
   },
   submitBtn:{
     
-    minWidth: 150,
+    minWidth: 100,
     width:200,
     alignSelf:"center",
     transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',

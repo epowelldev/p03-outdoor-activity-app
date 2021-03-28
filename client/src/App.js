@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import NotFound from "./components/pages/NotFound";
 import {Container} from "@material-ui/core";
-import CreateEvent from "./components/pages/CreateEvent";
+
 
 import './App.css';
 import LoginPage from "./components/pages/LoginPage";
@@ -20,7 +20,6 @@ function App() {
       <Router> 
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/CreateEvent" component={CreateEvent} />
           <Route exact path="/Login" component={LoginPage} />
           <Route exact path="/Signup" component={SignupPage} />
           <Route exact path="/NewEvent" component={NewEvent} />
