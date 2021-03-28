@@ -1,10 +1,10 @@
 import {Button, Input, Box} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React,  { useState, Fragment, } from 'react'
-import EVENT from "../utils/EVENT"
-import Navbar from './layout/Navbar';
+import EVENT from "../../utils/EVENT"
+import Navbar from '../layout/Navbar';
 
-import newEventPic from "../assets/newEventPic.jpg";
+import newEventPic from "../../assets/newEventPic.jpg";
 const useStyles = makeStyles({
     formStyles:{
       display:"flex",
@@ -68,7 +68,7 @@ const useStyles = makeStyles({
     
   });
 
-function NewEvent(){
+function UpdateEvent({currentEvent,setUpdateVis}){
 
     const classes = useStyles();
     const [eventState, setEventState] = useState({ name: '',datetimeInput:'', address: '' , description:'',image:''});
@@ -76,39 +76,24 @@ function NewEvent(){
     const[imageState,SetImageState]=useState({})
 
     const setImage = event => {
-      
          SetImageState({image: event.target.files[0]})
-         console.log(imageState)
      }
 
 
-    function handleSubmit(e) {
+    
+    function updateEvent(e) {
         e.preventDefault()
-        
         const dateTime=eventState.datetimeInput.split("T");
         const date=dateTime[0]
         const time=dateTime[1]
-        const image = imageState
+        const image =imageState.image
         setEventState({ name, address, description, date,time,image })
-        let formData = new FormData();
-    formData.append("name", name);
-    formData.append("address", address);
-    formData.append("date", date);
-    formData.append("time", time);
-    formData.append("description", description);
-    formData.append("image", imageState.image);
-
-        console.log( name, address, description, date,time)
-
-        EVENT.addEvent(formData).then((res) => {
+        EVENT.updateEvent(currentEvent._id, { name, address, description, date,time,image }).then(res => {
             console.log(res.data)
-            setEventState({})
-            SetImageState({})
-            window.location.href="/events"
-        })
-       
+        })       
+        .then(()=>{setUpdateVis(false)
+            window.location.replace("/Events")})        
     }
-
 
     function handleChange(e) {
         e.preventDefault();
@@ -121,18 +106,16 @@ function NewEvent(){
       <Fragment>
         <Navbar />
         <Box className={classes.ImgStyle}>
-          <form onSubmit={handleSubmit} >
+          <form >
             <Box className={classes.formStyles}>
-            <h1 className={classes.title}>Create New Event</h1>
-            <Input placeholder="Event Title"  name="name" value={name} onChange={handleChange} className={classes.inputStyles}inputProps={{ 'aria-label': 'Title' }} />
-            <Input placeholder="Location"  name="address" value={address} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'address' }} />
-            {/* <Input placeholder="Date" ref={date} name="date"  className={classes.inputStyles} inputProps={{ 'aria-label': 'date' }} />
-            <Input placeholder="Time" ref={time}  name="time"  className={classes.inputStyles} inputProps={{ 'aria-label': 'time' }} /> */}
+            <h1 className={classes.title}>Update Event</h1>
+            <Input placeholder={currentEvent.name} name="name" value={name} onChange={handleChange} className={classes.inputStyles}inputProps={{ 'aria-label': 'Title' }} />
+            <Input placeholder={currentEvent.address}  name="address" value={address} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'address' }} />
             <Input placeholder="Event Date and Time"  name="datetimeInput"  onChange={handleChange}  className={classes.inputStyles}  type="datetime-local" />
-            <Input placeholder="description"  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
-            <Input type="file" name="image" onChange={setImage} label="Add Image" className={classes.inputStyles}/>
-            <Button onClick={handleSubmit} variant="contained"  className={classes.submitBtn} color="primary">
-                Create Event
+            <Input placeholder={currentEvent.description}  name="description" value={description} onChange={handleChange}  className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
+            <Input type="file" name="image" onChange={setImage} className={classes.inputStyles}/>
+            <Button onClick={updateEvent} variant="contained"  className={classes.submitBtn} color="primary">
+                Update Event
             </Button>
             </Box>
           </form>
@@ -141,4 +124,4 @@ function NewEvent(){
     );
 }
 
-export default NewEvent;
+export default UpdateEvent;

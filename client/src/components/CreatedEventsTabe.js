@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -9,26 +9,154 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import EVENT from "../utils/EVENT"
-import { Modal, Button } from "@material-ui/core";
+import { Modal, Button, Box, Input } from "@material-ui/core";
+import UpdateEvent from './pages/UpdateEvent';
 
-
+import newEventPic from "../assets/newEventPic.jpg";
 const useStyles = makeStyles((theme) => ({
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      top:'50',
-      left:'50'
+  paper: {
+    position: 'absolute',
+    width: "70%",
+    height:"70%",
+    backgroundColor: "#5C6D37",
+    border: '2px solid black',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    top:"10%",
+      left:"10%",
+      margin:"auto",
+    color:"white"
+  },
+  Mtitle:{
+    fontSize:"4em",
+    textAlign:"center",
+    fontStyle:"bold"
+  },
+  DTstyle:{
+    fontSize:"1.5em",
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around"
+  },
+  descStyle:{
+    fontSize:"2em",
+    textAlign:"center",
+    margin:"2%",
+    marginTop:"8%"
+  },
+  ImgBoxStle:{
+    width:"30%",
+    height:"30%",
+    marginLeft:"35%"
+  },
+  ImageStyle:{
+    objectFit:"cover"
+},
+  formStyles:{
+    display:"flex",
+    flexDirection:"column",
+    width:"50%",
+    
+    marginLeft:"27%",
+    marginTop:"10%",
+    backgroundColor:"#5C6D37",
+    color:"white",
+    borderRadius:"25px",
+    paddingTop:"7%",
+    opacity:".90",
+    flexBasis:"content"
+  },
+  inputStyles:{
+    margin:"5%",
+    color:"black",
+    backgroundColor:"white"
+  },
+  ImgStyle:{
+    backgroundImage:`url(${newEventPic})`,
+    backgroundSize:"cover",
+    backgroundPosition:"center",
+    height:"100vh",
+    width:"100vw",
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"start",
+    marginTop:"0",
+    marginLeft:"0",
+    margin:"0",
+    padding:"0",
+    
+  
+},
+title:{
+  fontFamily:"Sans-serif",
+  textAlign:"center",
+  marginBottom:"10%"
+},
+submitBtn:{
+  
+  minWidth: 150,
+  width:200,
+  alignSelf:"center",
+  transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+  background:"white",
+  margin:"5%",
+  '&:hover': {
+    background:"white",
+    transform: 'scale(1.1)',
+  },
+  borderRadius: 50,
+  color: "black",
+  textTransform: 'none',
+  fontSize: 15,
+  fontWeight: 700,
+  padding:9
+},
+  
+  root: {
+      width: '90%',
     },
-    root: {
-        width: '90%',
+    container: {
+      maxHeight: 440,
+    },
+    btnStyle:{
+      position:"absolute",
+        bottom:"0",
+        right:"40%",
+        minWidth: 100,
+        width:"20%",
+      transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+      background:"white",
+      margin:"1%",
+      '&:hover': {
+        background:"white",
+        transform: 'scale(1.1)',
       },
-      container: {
-        maxHeight: 440,
+      borderRadius: 50,
+      color: "black",
+      textTransform: 'none',
+      fontSize: 15,
+      fontWeight: 700,
+      padding:9
+   },
+   dualBtn:{
+    position:"absolute",
+      bottom:"0",
+      right:"55%",
+      minWidth: 200,
+      transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
+      background:"white",
+      margin:"1%",
+      '&:hover': {
+        background:"white",
+        transform: 'scale(1.1)',
       },
+      borderRadius: 50,
+      color: "black",
+      textTransform: 'none',
+      fontSize: 15,
+      fontWeight: 700,
+      padding:9
+   }
   }));
   const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
@@ -38,18 +166,28 @@ const useStyles = makeStyles((theme) => ({
     ];
 
 
-function CreatedEventsTable({events}){
-    const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+function CreatedEventsTable({events,userState}){
+  const classes = useStyles();
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const rows = [];
-  const [open, setOpen] = React.useState(false);
-  const[currentEvent,setCurrentEvent]=React.useState({});
+  const [open, setOpen] = useState(false);
+  const[currentEvent,setCurrentEvent]=useState({});
+  const[updateVis,setUpdateVis]=useState(false)
+  const [eventState, setEventState] = useState({ name: '',datetimeInput:'', address: '' , description:'',image:''});
+  const[imageState,SetImageState]=useState({})
+  const { name, address,description } = eventState;
+  const setImage = event => {
+       SetImageState({image: event.target.files[0]})
+   }
 
-  const handleOpen = () => {
-    setOpen(true);
+  
+  function handleChange(e) {
+    e.preventDefault();
     
-  };
+    setEventState({ ...eventState, [e.target.name]: e.target.value })
+    
+}
 
   const handleClose = () => {
     setOpen(false);
@@ -75,6 +213,8 @@ const handleChangePage = (event, newPage) => {
     })
 }
 
+
+
 const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
@@ -82,13 +222,23 @@ const handleChangeRowsPerPage = (event) => {
 
 //   function updateEvent(e) {
 //     e.preventDefault()
-
-//     EVENT.updateEvent(show.updateEventInfo._id, updateEventState).then(res => {
+//     const dateTime=eventState.datetimeInput.split("T");
+//     const date=dateTime[0]
+//     const time=dateTime[1]
+//     const image =imageState.image
+//     setEventState({ name, address, description, date,time,image })
+//     EVENT.updateEvent(currentEvent._id, { name, address, description, date,time,image }).then(res => {
 //         console.log(res.data)
 //     })       
-//     .then(window.location.replace("/Events"))         
-
+//     .then(()=>{setUpdateVis(false)
+//         })        
 // }
+
+function deleteEvent(id) {
+  EVENT.deleteEvent(id,userState._id )
+  .then(window.location.replace("/Events"))
+ console.log(id, userState._id )
+}
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -135,20 +285,30 @@ const handleChangeRowsPerPage = (event) => {
       />
       <Modal open={open}
         onClose={handleClose}>
-            <div  className={classes.paper}>
-    <h2 id="simple-modal-title">{currentEvent.name}</h2>
-    <p id="simple-modal-description">
-      {currentEvent.address}
-    </p>
-    <p id="simple-modal-description">
-      {currentEvent.date}
-    </p>
-    <p id="simple-modal-description">
-      {currentEvent.description}
-    </p>
-    <button>Update event</button>
-    {/* onClick={() => joinEvent(currentEvent._id)} */}
-  </div>
+            <Box  className={classes.paper}>
+            <h2 className={classes.Mtitle}>{currentEvent.name}</h2>
+          <div className={classes.DTstyle}>
+            <p>
+              {currentEvent.address}
+            </p>
+            <p>
+              {currentEvent.date}
+            </p>
+          </div>
+          <div className={classes.descStyle}>
+            <p>
+              {currentEvent.description}
+            </p>
+          </div>
+          <div className={classes.ImgBoxStle}>
+            {currentEvent.image ?
+            <img className={classes.ImageStyle} src={currentEvent.image.url} alt="event"/>
+              : <p>no picture</p>
+              }
+              </div>
+    {/* <Button className={classes.dualBtn} >Update event</Button> */}
+    <Button className={classes.btnStyle} onClick={()=>deleteEvent(currentEvent._id)}>Delete event</Button>
+  </Box>
       </Modal>
     </Paper>
 

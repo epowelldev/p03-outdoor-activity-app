@@ -16,7 +16,7 @@ const useStyles=makeStyles({
     color:"white",
     borderRadius:"25px",
     paddingTop:"7%",
-    opacity:".90"
+    opacity:".80"
     },
     inputStyles:{
       margin:"30px",

@@ -25,15 +25,16 @@ const columns = [
 // }
 const useStyles = makeStyles((theme) => ({
     paper: {
-      position: 'fixed',
+      position: 'absolute',
       width: "70%",
       height:"70%",
       backgroundColor: "#5C6D37",
       border: '2px solid black',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
-      top:100,
-      left:145,
+      top:"10%",
+      left:"10%",
+      margin:"auto",
       color:"white"
     },
     Mtitle:{
@@ -47,11 +48,14 @@ const useStyles = makeStyles((theme) => ({
       flexDirection:"row",
       justifyContent:"space-around"
     },
+    ImageStyle:{
+        objectFit:"cover"
+    },
     descStyle:{
       fontSize:"2em",
       textAlign:"center",
       margin:"2%",
-      marginTop:"8%"
+      marginTop:"3%"
     },
     root: {
         width: '90%',
@@ -63,20 +67,26 @@ const useStyles = makeStyles((theme) => ({
         position:"absolute",
         bottom:"0",
         right:"40%",
-        minWidth: 200,
+        minWidth: 100,
+        width:"20%",
         transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-        background:"brown",
+        background:"white",
         margin:"1%",
         '&:hover': {
-          background:"brown",
+          background:"white",
           transform: 'scale(1.1)',
         },
         borderRadius: 50,
-        color: "white",
+        color: "black",
         textTransform: 'none',
         fontSize: 15,
         fontWeight: 700,
         padding:9
+     },
+     ImgBoxStle:{
+       width:"30%",
+       height:"30%",
+       marginLeft:"35%"
      }
   }));
 
@@ -91,10 +101,7 @@ export default function EventsTable({events}) {
   const [open, setOpen] = React.useState(false);
   const[currentEvent,setCurrentEvent]=React.useState({});
 
-  const handleOpen = () => {
-    setOpen(true);
-    
-  };
+ 
 
   const handleClose = () => {
     setOpen(false);
@@ -108,8 +115,9 @@ export default function EventsTable({events}) {
   }
 
   function joinEvent(eventId) {
+    if(eventId){
     EVENT.joinEvent(eventId).then(window.location.replace("/Events"))
-
+    }
 }
 
   const handleChangePage = (event, newPage) => {
@@ -117,14 +125,15 @@ export default function EventsTable({events}) {
   };
 
   function eventInfo(eventId) {
+    if(eventId){
     EVENT.eventInfo(eventId).then(res => {
         console.log(res.data)
         const event=res.data.eventInfo
         setCurrentEvent(event)
-        
         setOpen(true);
-       
+    
     })
+  }
 }
 
   const handleChangeRowsPerPage = (event) => {
@@ -192,8 +201,14 @@ export default function EventsTable({events}) {
               {currentEvent.description}
             </p>
           </div>
+          <div className={classes.ImgBoxStle}>
+            {currentEvent.image ?
+            <img className={classes.ImageStyle} src={currentEvent.image.url} alt="event"/>
+              : <p>no picture</p>
+              }
+              </div>
           <Button className={classes.btnStyle} onClick={() => joinEvent(currentEvent._id)}>join event</Button>
-    
+         
         </Box>
       </Modal>
     </Paper>
