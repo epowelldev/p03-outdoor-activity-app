@@ -8,7 +8,7 @@ import HomePagePic from "../../assets/homePagePic.jpg"
 const useStyles=makeStyles({
   contentStyle:{
     marginLeft:"6%",
-    marginTop:"15%"
+    marginTop:"12%",
   },
   bg:{
     backgroundColor:"#5C6D37",
