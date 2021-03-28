@@ -18,7 +18,7 @@ mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/join-us",
     useCreateIndex: true,
     useFindAndModify: false,
   }
-);
+).catch((err) => console.log("MONGODB ERRORZ: ", err));
 
 
 app.use(morgan("dev"));
