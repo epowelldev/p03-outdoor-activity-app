@@ -101,10 +101,7 @@ export default function EventsTable({events}) {
   const [open, setOpen] = React.useState(false);
   const[currentEvent,setCurrentEvent]=React.useState({});
 
-  const handleOpen = () => {
-    setOpen(true);
-    
-  };
+ 
 
   const handleClose = () => {
     setOpen(false);
@@ -118,8 +115,9 @@ export default function EventsTable({events}) {
   }
 
   function joinEvent(eventId) {
+    if(eventId){
     EVENT.joinEvent(eventId).then(window.location.replace("/Events"))
-
+    }
 }
 
   const handleChangePage = (event, newPage) => {

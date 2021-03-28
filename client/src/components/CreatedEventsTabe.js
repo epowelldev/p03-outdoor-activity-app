@@ -181,10 +181,7 @@ function CreatedEventsTable({events,userState}){
        SetImageState({image: event.target.files[0]})
    }
 
-  const handleOpen = () => {
-    setOpen(true);
-    
-  };
+  
   function handleChange(e) {
     e.preventDefault();
     

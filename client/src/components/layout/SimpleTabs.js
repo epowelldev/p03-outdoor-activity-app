@@ -104,22 +104,24 @@ export default function SimpleTabs() {
 
 
   useEffect(() => {
+    if(userState._id){
       USER.myEvents(userState._id).then((res) => {
           const data = res.data[0]
           setmyEventsState(JSON.parse(JSON.stringify(data)).events)
           // console.log(JSON.parse(JSON.stringify(data)).events)
       })
-
+    }
   }, [userState])
 
 
   useEffect(() => {
+    if(userState._id){
       EVENT.findOrganizedEvent(userState._id).then((res) => {
           setMyOrganizedState(res.data)
           console.log("data organized ---------------")
           console.log(res.data)
       })
-
+    }
   }, [userState])
 
 

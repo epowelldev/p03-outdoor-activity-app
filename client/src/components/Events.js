@@ -59,22 +59,24 @@ function Events(){
 
 
     useEffect(() => {
+        if(userState._id){
         USER.myEvents(userState._id).then((res) => {
             const data = res.data[0]
             setmyEventsState(JSON.parse(JSON.stringify(data)).events)
             // console.log(JSON.parse(JSON.stringify(data)).events)
         })
-
+    }
     }, [userState])
 
 
     useEffect(() => {
+        if(userState._id){
         EVENT.findOrganizedEvent(userState._id).then((res) => {
             setMyOrganizedState(res.data)
             console.log("data organized ---------------")
             console.log(res.data)
         })
-
+    }
     }, [userState])
 
 
@@ -107,36 +109,6 @@ function Events(){
     }, []);
 
 
-    
-
-    function logOut(e) {
-        e.preventDefault();
-        API.logout();
-        setLoggedIn(false)
-    }
-    function joinEvent(eventId) {
-        EVENT.joinEvent(eventId).then(window.location.replace("/Events"))
-
-    }
-    function leaveEvent(eventId) {
-        EVENT.leaveEvent(eventId).then(window.location.replace("/Events"));
-    }
-
-    function eventInfo(eventId) {
-        EVENT.eventInfo(eventId).then(res => {
-            console.log(res.data)
-            return(<p>{res.data}</p>)
-        })
-    }
-
-    function updateEvent(e) {
-        e.preventDefault()
-
-        EVENT.updateEvent(show.updateEventInfo._id, updateEventState).then(res => {
-            console.log(res.data)
-        })       
-        .then(window.location.replace("/Events"))         
-    }
 
     return(
         <Fragment>
