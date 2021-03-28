@@ -8,21 +8,23 @@ import UpdateContext from "../../updateContext/update/updateContext";
 import { useHistory } from "react-router-dom"
 const useStyles = makeStyles({
   formStyles: {
-    display: "flex",
-    flexDirection: "column",
-    width: "50%",
-
-    marginLeft: "27%",
-    marginTop: "10%",
-    backgroundColor: "#5C6D37",
-    color: "white",
-    borderRadius: "25px",
-    paddingTop: "7%",
-    opacity: ".90",
-    flexBasis: "content"
+    display:"flex",
+      flexDirection:"column",
+      width:"50%",
+      height:"80vh",
+      justifyContent:"space-around",
+      marginLeft:"24%",
+      marginTop:"10%",
+      backgroundColor:"#5C6D37",
+      color:"white",
+      borderRadius:"25px",
+      // paddingTop:"7%",
+      opacity:".90",
+      flexBasis:"content"
   },
   inputStyles: {
-    margin: "5%",
+    width:"75%",
+    alignSelf:"center",
     color: "black",
     backgroundColor: "white"
   },
@@ -45,7 +47,7 @@ const useStyles = makeStyles({
   title: {
     fontFamily: "Sans-serif",
     textAlign: "center",
-    marginBottom: "10%"
+    // marginBottom: "10%"
   },
   submitBtn: {
 

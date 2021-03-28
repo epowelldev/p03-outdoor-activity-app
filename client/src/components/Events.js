@@ -142,12 +142,12 @@ function Events(){
 
     return(
         <Fragment>
-            { loggedIn &&
+            {/* { loggedIn && */}
                 <Fragment>
                     <SimpleTabs />
                 </Fragment>
-            }
-            { !loggedIn && <PlsLogin/> }
+            {/* } */}
+            {/* { !loggedIn && <PlsLogin/> } */}
         </Fragment>               
     );
 }

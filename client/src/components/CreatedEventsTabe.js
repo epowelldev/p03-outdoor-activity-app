@@ -126,7 +126,7 @@ submitBtn:{
     btnStyle:{
       position:"absolute",
         bottom:"0",
-        right:"40%",
+        right:"15%",
         minWidth: 100,
         width:"20%",
       transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
@@ -147,7 +147,8 @@ submitBtn:{
     position:"absolute",
       bottom:"0",
       right:"55%",
-      minWidth: 200,
+      minWidth: 100,
+      width:"20%",
       transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
       background:"white",
       margin:"1%",
