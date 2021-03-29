@@ -142,7 +142,7 @@ const EventCardList = ({ name, id, date, time, description, address, image,curre
                     <Typography className={classes.title}>Address</Typography>
                     <Typography variant="body1">{address}</Typography>
                     <Typography className={classes.title}>Date and Time</Typography>
-                    <Typography variant="body1">{date}{time}</Typography>
+                    <Typography variant="body1">{date} || {time}</Typography>
 
                     <div className={classes.buttons}>
                      {loggedIn &&  
