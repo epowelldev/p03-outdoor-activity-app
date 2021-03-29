@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, Fragment } from 'react';
 import API from '../../utils/API';
@@ -59,7 +59,7 @@ function logOut(e) {
           <ButtonGroup variant="text" color="inherit">
             <Button size="large" component={Link} to="/">Join Us Outside</Button>
           </ButtonGroup>
-        {loggedIn && <h2>Welcome {userName} </h2>}
+        {loggedIn && <Typography variant="h6"> Welcome {userName} </Typography>}
           <ButtonGroup variant="text" color="inherit" >
             {/* <IconButton edge="start" aria-label="menu" className={classes.menuButton}>
               <MenuIcon />
