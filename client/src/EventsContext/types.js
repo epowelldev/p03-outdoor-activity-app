@@ -1,0 +1,7 @@
+export const ALL_EVENTS = 'ALL_EVENTS';
+export const JOINED_EVENTS='JOINED_EVENTS';
+export const ORGANIZED_EVENTS='ORGANIZED_EVENTS';
+export const DELETE_EVENT="DELETE_EVENT";
+
+
+

@@ -7,15 +7,18 @@ import {Container} from "@material-ui/core";
 import './App.css';
 import LoginPage from "./components/pages/LoginPage";
 import NewEvent from "./components/NewEvent";
+
 import EventsPage from "./components/pages/EventsPage";
 import SignupPage from "./components/pages/SignupPage";
 import UpdatePage from "./components/pages/UpdatePage"
 import UpdateState from '../src/updateContext/update/UpdateState'
+import EventsState from '../src/EventsContext/Events/EventsSate'
 
 
 function App() {
   return (
     <UpdateState>
+      <EventsState>
     <Container maxWidth={false} disableGutters={true}>
       <Router> 
         <Switch>
@@ -29,6 +32,7 @@ function App() {
         </Switch>
       </Router>
     </Container>
+    </EventsState>
     </UpdateState>
     
   );
