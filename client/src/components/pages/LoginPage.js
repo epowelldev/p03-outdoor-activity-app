@@ -2,7 +2,7 @@ import LoginPic from "../../assets/loginPic.jpeg";
 import { makeStyles } from '@material-ui/core/styles';
 import Login from "../Login"
 import { Box } from "@material-ui/core";
-
+import Navbar from "../layout/Navbar";
 
 
 const useStyles=makeStyles({
@@ -27,6 +27,7 @@ function LoginPage(){
     return(
         
         <Box className={classes.ImgStyle} >
+            <Navbar />
             <Box>
                 <Login />
             </Box>

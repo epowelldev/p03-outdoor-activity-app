@@ -31,7 +31,7 @@ function Events(){
         <Fragment>
             
                 <Fragment>
-                    <SimpleTabs />
+                    <SimpleTabs loggedIn={loggedIn}/>
                 </Fragment>
            
         </Fragment>               

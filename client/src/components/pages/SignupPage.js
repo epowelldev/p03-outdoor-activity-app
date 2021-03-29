@@ -1,7 +1,7 @@
 import Signup from "../Signup";
 import SignupPic from "../../assets/signupPic.jpeg";
 import { Box, makeStyles } from "@material-ui/core";
-
+import Navbar from "../layout/Navbar";
 
 const useStyles=makeStyles({
     PicStyle:{
@@ -24,6 +24,7 @@ function SignupPage(){
     const classes = useStyles();
     return(
         <Box className={classes.PicStyle}>
+            <Navbar/>
             <Signup/>
         </Box>
     );
