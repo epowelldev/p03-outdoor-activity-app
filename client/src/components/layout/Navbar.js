@@ -29,10 +29,12 @@ const useStyles = makeStyles((theme) => ({
 export default () => {
   const classes = useStyles();
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userName,setUserame]=useState("")
 
   useEffect(() => {
     API.getUser().then((response) => {
         if (response.data.username) {
+          setUserame(response.data.username)
             setLoggedIn(true);
         } else {
             setLoggedIn(false);
@@ -57,6 +59,7 @@ function logOut(e) {
           <ButtonGroup variant="text" color="inherit">
             <Button size="large" component={Link} to="/">Join Us Outside</Button>
           </ButtonGroup>
+        {loggedIn && <h2>Welcome {userName} </h2>}
           <ButtonGroup variant="text" color="inherit" >
             {/* <IconButton edge="start" aria-label="menu" className={classes.menuButton}>
               <MenuIcon />
