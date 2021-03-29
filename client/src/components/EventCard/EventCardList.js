@@ -139,7 +139,7 @@ const EventCardList = ({ name, id, date, time, description, address, image,curre
                     </div>
                     <Typography className={classes.title}>Description</Typography>
                     <Typography variant="body1">{description}</Typography>
-                    <Typography className={classes.title}>Address</Typography>
+                    <Typography className={classes.title}>Location</Typography>
                     <Typography variant="body1">{address}</Typography>
                     <Typography className={classes.title}>Date and Time</Typography>
                     <Typography variant="body1">{date} || {time}</Typography>
