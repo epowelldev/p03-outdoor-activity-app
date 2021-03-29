@@ -197,8 +197,12 @@ export default function SimpleTabs() {
         <div className={classes.rowBar}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="All Events" {...a11yProps(0)} />
+          {loggedIn &&
           <Tab label="Joined Events" {...a11yProps(1)} />
+          }
+          {loggedIn &&
           <Tab label="Organized Events" {...a11yProps(2)} />
+          }
         </Tabs>
         <Button variant="text" color="inherit" className={classes.btnStyles} component={Link} to="/newEvent">{loggedIn && "Organize Event"}</Button>
         </div> 
