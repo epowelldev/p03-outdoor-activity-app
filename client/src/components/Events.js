@@ -1,13 +1,8 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState, useEffect, Fragment } from 'react';
-
 import API from '../utils/API';
-
-import PlsLogin from './PlsLogin';
-
-
-
-import SimpleTabs from "./layout/SimpleTabs";
+import EventCard from './EventCard/EventsCard'
+import EventHeader from "./EventCard/EventHeader"
 
 
 function Events(){
@@ -27,13 +22,16 @@ function Events(){
         };
     }, []);
 
+
+
+
+
+
     return(
         <Fragment>
-            
-                <Fragment>
-                    <SimpleTabs loggedIn={loggedIn}/>
-                </Fragment>
-           
+         <EventHeader/>
+         <EventCard loggedIn={loggedIn}/>
+      
         </Fragment>               
     );
 }
