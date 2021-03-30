@@ -54,7 +54,7 @@ function logOut(e) {
 
   return (
     <Fragment>
-      <AppBar className={classes.root} >
+      <AppBar className={classes.root}>
         <Toolbar className={classes.toolbar}>
           <ButtonGroup variant="text" color="inherit">
             <Button size="large" component={Link} to="/">Join Us Outside</Button>
