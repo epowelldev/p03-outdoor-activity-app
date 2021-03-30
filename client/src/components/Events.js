@@ -29,9 +29,8 @@ function Events(){
 
     return(
         <Fragment>
-         <EventHeader/>
-         <EventCard loggedIn={loggedIn}/>
-      
+            {loggedIn ? <EventHeader/> : [] }
+            <EventCard loggedIn={loggedIn}/>
         </Fragment>               
     );
 }
