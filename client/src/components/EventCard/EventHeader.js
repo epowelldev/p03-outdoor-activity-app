@@ -111,19 +111,13 @@ const EventHeader = () => {
               <Button onClick={allEvents} className={eventsContext.eventType==="allEvents" ? classes.buttonla : classes.buttonl }  variant="contained">
                 All Events
               </Button>
-              {loggedIn && 
-                <Button onClick={joinedEvents} className={eventsContext.eventType==="myEvents" ? classes.buttonma : classes.buttonm} variant="contained" >
-                  My Events
-                </Button>
-              }  
-              {loggedIn &&   
-                <Button onClick={organizedEvents} className={eventsContext.eventType==="organizedEvents" ? classes.buttonma : classes.buttonm} variant="contained" >
-                  Organized Events
-                </Button>
-              }
-              {loggedIn && 
-                <Button variant="contained"  className={classes.buttonc} component={Link} to="/newEvent">Create an Event</Button>
-              }
+              <Button onClick={joinedEvents} className={eventsContext.eventType==="myEvents" ? classes.buttonma : classes.buttonm} variant="contained" >
+                My Events
+              </Button>
+              <Button onClick={organizedEvents} className={eventsContext.eventType==="organizedEvents" ? classes.buttonma : classes.buttonm} variant="contained" >
+                Organized Events
+              </Button>
+              <Button variant="contained"  className={classes.buttonc} component={Link} to="/newEvent">Create an Event</Button>
             </ButtonGroup>
           </Toolbar>
       </CardContent>
