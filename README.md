@@ -44,7 +44,7 @@ Join Us Outside allows user to create account and with your account you can see 
 
 ## Deployed
 
-- Live application is here: [https://github.com/epowelldev/p03-outdoor-activity-app/](https://github.com/epowelldev/p03-outdoor-activity-app)
+- Live application is here: [https://join-us-outside.herokuapp.com/](https://join-us-outside.herokuapp.com/)
 
 ## Contributing
 
