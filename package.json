@@ -39,6 +39,7 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "react-bootstrap": "^1.5.2",
+    "react-material-ui-form-validator": "^2.1.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0"
   }
