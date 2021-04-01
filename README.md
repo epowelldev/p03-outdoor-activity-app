@@ -29,7 +29,7 @@ Join Us Outside allows user to create account and with your account you can see 
 - Fork repository and clone onto your machine.
 - You should have NODE and MongoDB installed.
 - Run "npm install" command.
-- Run "npm start" to start the app.
+- Run "npm run dev " to start the app.
 
 ## Technologies Used
 
@@ -44,7 +44,7 @@ Join Us Outside allows user to create account and with your account you can see 
 
 ## Deployed
 
-- Live application is here: [https://github.com/epowelldev/p03-outdoor-activity-app/](https://github.com/epowelldev/p03-outdoor-activity-app)
+- Live application is here: [https://join-us-outside.herokuapp.com/](https://join-us-outside.herokuapp.com/)
 
 ## Contributing
 
