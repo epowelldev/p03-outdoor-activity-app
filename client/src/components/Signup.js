@@ -1,8 +1,9 @@
-import {Button, Input, Box} from '@material-ui/core';
+import {Button, Box} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import API from "../utils/API";
 import React,  { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 const useStyles=makeStyles({
@@ -28,21 +29,22 @@ const useStyles=makeStyles({
       alignSelf:"center",
     backgroundColor:"white"
     },
+    
     altBtn:{
         fontFamily:"Sans-serif",
         // marginLeft:"22%"
-        textAlign:"center"
+        // textAlign:"center"
       },
       title:{
         fontFamily:"Sans-serif",
-        textAlign:"center",
+        // textAlign:"center",
         // marginBottom:"5%"
       },
       submitBtn:{
     
-        minWidth: 50,
-        width:200,
-        alignSelf:"center",
+        // minWidth: 50,
+        width:"75%",
+        // alignSelf:"center",
         transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
         background:"white",
         marginBottom:"2%",
@@ -68,15 +70,18 @@ function Signup(){
     const [loggedIn, setLoggedIn] = useState(false);
 
 
-
     function handleSubmit(e) {
         e.preventDefault()
       console.log("hit", signUpState)
         API.signup( signUpState)
-               .then(setSignUpState({ username: '', email: '', password: '' }))
-            //    .then(AUTH.login(username, password))           
-               .then(setLoggedIn(true))
-       
+          
+          .then(()=>{
+           
+           API.login(username, password).then(()=>{ setLoggedIn(true)})
+           
+          } )
+     
+                    
     }
 
     function handleChange(e) {
@@ -89,20 +94,20 @@ function Signup(){
       return <Redirect to={{ pathname: "/Events" }} />;
   } else {
     return(
-      <form onSubmit={handleSubmit} >
+      <ValidatorForm className={classes.formStyles}  >
         <Box className={classes.formStyles}>
           <h1 className={classes.title}>Signup</h1>
-          <Input placeholder="First Name" onChange={handleChange} className={classes.inputStyles}inputProps={{ 'aria-label': 'description' }} />
-          <Input placeholder="Last Name" onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
-          <Input placeholder="UserName" name="username" value={username} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
-          <Input placeholder="Password" name="password" type="password" value={password} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
-          <Input placeholder="Email" name="email" value={email} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
-          <Button variant="contained"  className={classes.submitBtn} color="primary" onClick={handleSubmit}>
+          <TextValidator placeholder="First Name" onChange={handleChange} className={classes.inputStyles}inputProps={{ 'aria-label': 'description' }} />
+          <TextValidator placeholder="Last Name" onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
+          <TextValidator   validators={['required']} errorMessages={['this field is required']} placeholder="UserName" name="username" value={username} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
+          <TextValidator validators={['required']} errorMessages={['this field is required']} placeholder="Password" name="password" type="password" value={password} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
+          <TextValidator   validators={['required', 'isEmail']} errorMessages={['this field is required', 'email is not valid']}placeholder="Email" name="email" value={email} onChange={handleChange} className={classes.inputStyles} inputProps={{ 'aria-label': 'description' }} />
+          <Button variant="contained"   type="submit" className={classes.submitBtn} color="primary" onClick={handleSubmit}>
             Create Account
           </Button>
           <p className={classes.altBtn} >Already have an account?<Button component={Link} to="/login" color="primary">Login</Button></p>
         </Box>
-      </form>
+      </ValidatorForm>
       
     )};
     }

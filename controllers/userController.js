@@ -51,7 +51,9 @@ module.exports = {
             db.User.create(newUser)
 
 
+
               .then((response) => res.json(response))
+
 
 
               .catch(err => res.status(422).json(err));
@@ -86,9 +88,13 @@ module.exports = {
   login: (req, res) => {
     var userInfo = {
       id: req.user._id,
-      username: req.user.username
+      username: req.user.username,
+      
     };
-    res.json(userInfo);
+    
+      res.json(userInfo).catch(err => res.json(err));
+    
+    
   },
 
   myEvents: (req, res) => {
