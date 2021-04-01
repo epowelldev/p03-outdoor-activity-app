@@ -49,12 +49,16 @@ module.exports = {
             })
           } else {
             db.User.create(newUser)
-                     
+
+
+
               .then((response) => res.json(response))
-                                        
+
+
+
               .catch(err => res.status(422).json(err));
 
-              
+
           }
         });
       }
@@ -62,13 +66,12 @@ module.exports = {
   },
 
 
-
   logout: (req, res) => {
     if (req.user) {
       req.logout()
       res.json({ msg: 'logging out' })
-    }else{
-      res.json({msg : 'not logged in yet'})
+    } else {
+      res.json({ msg: 'not logged in yet' })
     }
   },
 
@@ -96,9 +99,9 @@ module.exports = {
 
   myEvents: (req, res) => {
     db.User.find({ _id: req.params.id })
-        .populate("events")
-        .then(event => res.json(event))
-        .catch(err => res.json(err))
+      .populate("events")
+      .then(event => res.json(event))
+      .catch(err => res.json(err))
 
   }
 
